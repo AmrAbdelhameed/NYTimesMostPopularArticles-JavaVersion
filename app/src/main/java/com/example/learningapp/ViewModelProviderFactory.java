@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.learningapp.data.DataManager;
 import com.example.learningapp.ui.main.MainViewModel;
 import com.example.learningapp.ui.main.article.ArticleViewModel;
+import com.example.learningapp.ui.main.article_details.ArticleDetailsViewModel;
 import com.example.learningapp.utils.rx.SchedulerProvider;
 
 import javax.inject.Inject;
@@ -19,8 +20,7 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
     private final SchedulerProvider schedulerProvider;
 
     @Inject
-    public ViewModelProviderFactory(DataManager dataManager,
-                                    SchedulerProvider schedulerProvider) {
+    public ViewModelProviderFactory(DataManager dataManager, SchedulerProvider schedulerProvider) {
         this.dataManager = dataManager;
         this.schedulerProvider = schedulerProvider;
     }
@@ -34,6 +34,9 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
         } else if (modelClass.isAssignableFrom(ArticleViewModel.class)) {
             //noinspection unchecked
             return (T) new ArticleViewModel(dataManager, schedulerProvider);
+        } else if (modelClass.isAssignableFrom(ArticleDetailsViewModel.class)) {
+            //noinspection unchecked
+            return (T) new ArticleDetailsViewModel(dataManager, schedulerProvider);
         }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }

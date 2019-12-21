@@ -6,7 +6,7 @@ import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.learningapp.R;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.learningapp.data.model.api.Article;
 import com.example.learningapp.ui.main.article.ArticleAdapter;
 
@@ -29,6 +29,11 @@ public final class BindingUtils {
 
     @BindingAdapter("imageUrl")
     public static void setImageUrl(ImageView imageView, String url) {
-        Glide.with(imageView.getContext()).load(url).placeholder(R.drawable.ic_rabbit).into(imageView);
+        Glide.with(imageView.getContext()).load(url).into(imageView);
+    }
+
+    @BindingAdapter("imageUrlCrop")
+    public static void setImageUrlCrop(ImageView imageView, String url) {
+        Glide.with(imageView.getContext()).load(url).apply(RequestOptions.circleCropTransform()).into(imageView);
     }
 }

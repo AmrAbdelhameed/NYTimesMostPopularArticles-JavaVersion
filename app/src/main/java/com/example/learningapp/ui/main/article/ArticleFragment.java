@@ -17,6 +17,8 @@ import com.example.learningapp.ViewModelProviderFactory;
 import com.example.learningapp.data.model.api.Article;
 import com.example.learningapp.databinding.FragmentArticleBinding;
 import com.example.learningapp.ui.base.BaseFragment;
+import com.example.learningapp.ui.main.MainActivity;
+import com.example.learningapp.ui.main.article_details.ArticleDetailsFragment;
 import com.example.learningapp.utils.AppConstants;
 
 import java.util.List;
@@ -28,13 +30,12 @@ import javax.inject.Inject;
  */
 public class ArticleFragment extends BaseFragment<FragmentArticleBinding, ArticleViewModel>
         implements ArticleNavigator, ArticleAdapter.ArticleAdapterListener {
+    private static int period = 1;
     @Inject
     ArticleAdapter articleAdapter;
-    FragmentArticleBinding fragmentArticleBinding;
-    @Inject
-    LinearLayoutManager mLayoutManager;
     @Inject
     ViewModelProviderFactory factory;
+    private FragmentArticleBinding fragmentArticleBinding;
     private ArticleViewModel articleViewModel;
 
     public static ArticleFragment newInstance() {
@@ -62,14 +63,16 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
 
     @Override
     public void onRetryClick() {
-        articleViewModel.fetchArticles();
+        articleViewModel.fetchArticles(period);
     }
 
     @Override
     public void onItemClick(Article article) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppConstants.ARTICLE, article);
-//        ((MainActivity) getActivity()).replaceCurrentFragment(bundle , new ArticlesDetailsFragment());
+        if (getActivity() != null) {
+            ((MainActivity) getActivity()).replaceCurrentFragment(bundle, new ArticleDetailsFragment());
+        }
     }
 
     @Override
@@ -97,8 +100,10 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
     }
 
     private void setUp() {
-        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        fragmentArticleBinding.resultsBeanRecyclerView.setLayoutManager(mLayoutManager);
+        if (getActivity() != null) {
+            ((MainActivity) getActivity()).setSupportActionBar(fragmentArticleBinding.toolbar);
+        }
+        fragmentArticleBinding.resultsBeanRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         fragmentArticleBinding.resultsBeanRecyclerView.setItemAnimator(new DefaultItemAnimator());
         fragmentArticleBinding.resultsBeanRecyclerView.setAdapter(articleAdapter);
     }

@@ -38,7 +38,7 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<ArticlesResponse> getArticlesApiCall() {
-        return mApiHelper.getArticlesApiCall();
+    public Single<ArticlesResponse> getArticlesApiCall(int period) {
+        return mApiHelper.getArticlesApiCall(period);
     }
 }

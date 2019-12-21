@@ -6,5 +6,5 @@ import io.reactivex.Single;
 
 public interface ApiHelper {
 
-    Single<ArticlesResponse> getArticlesApiCall();
+    Single<ArticlesResponse> getArticlesApiCall(int period);
 }

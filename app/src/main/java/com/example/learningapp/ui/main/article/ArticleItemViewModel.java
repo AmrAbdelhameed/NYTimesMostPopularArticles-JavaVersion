@@ -10,17 +10,15 @@ public class ArticleItemViewModel {
     public final ObservableField<String> imageUrl;
     public final ObservableField<String> title;
     public final ObservableField<String> author;
-    public final ObservableField<String> content;
     public final ObservableField<String> date;
     private final Article article;
 
     public ArticleItemViewModel(Article article, ArticleItemViewModelListener listener) {
         this.article = article;
         this.mListener = listener;
-        imageUrl = new ObservableField<>(article.getMedia().get(0).getMediaMetadata().get(2).getUrl());
+        imageUrl = new ObservableField<>(article.getMedia().get(0).getMediaMetadata().get(0).getUrl());
         title = new ObservableField<>(article.getTitle());
         author = new ObservableField<>(article.getByline());
-        content = new ObservableField<>(article.getAbstract());
         date = new ObservableField<>(article.getPublishedDate());
     }
 

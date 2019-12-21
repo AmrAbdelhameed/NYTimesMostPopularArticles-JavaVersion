@@ -26,65 +26,99 @@
             app:cardCornerRadius="4dp"
             app:cardElevation="4dp">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_margin="8dp">
 
                 <ImageView
                     android:id="@+id/coverImageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:scaleType="fitXY"
-                    app:imageUrl="@{viewModel.imageUrl}"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:scaleType="centerCrop"
+                    app:imageUrlCrop="@{viewModel.imageUrl}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription"
                     tools:src="@drawable/ic_rabbit" />
 
-                <TextView
-                    android:id="@+id/titleTextView"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="16dp"
-                    android:text="@{viewModel.title}"
-                    tools:text="Android MVP Architecture" />
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="@+id/coverImageView"
+                    app:layout_constraintEnd_toStartOf="@+id/ic_arrow"
+                    app:layout_constraintStart_toEndOf="@+id/coverImageView"
+                    app:layout_constraintTop_toTopOf="@+id/coverImageView">
 
-                <TextView
-                    android:id="@+id/authorTextView"
-                    android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/titleTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:text="@{viewModel.title}"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tools:text="Whistle-Blower Complaint Sets Off a Battle Involving Trump" />
+
+                    <TextView
+                        android:id="@+id/authorTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:singleLine="true"
+                        android:text="@{viewModel.author}"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp"
+                        tools:text="By JULIAN E. BARNES, NICHOLAS FANDOS, MICHAEL S. SCHMIDT and MATTHEW ROSENBERG" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="end|center"
+                        android:orientation="horizontal"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="@+id/coverImageView"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/coverImageView"
+                            app:srcCompat="@drawable/ic_date"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/dateTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:singleLine="true"
+                            android:text="@{viewModel.date}"
+                            android:textColor="@color/gray"
+                            android:textSize="12sp"
+                            tools:text="2019-09-19" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/ic_arrow"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="16dp"
-                    android:text="@{viewModel.author}"
-                    tools:text="Amit Shekhar" />
+                    app:layout_constraintBottom_toBottomOf="@+id/coverImageView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/coverImageView"
+                    app:srcCompat="@drawable/ic_arrow"
+                    tools:ignore="ContentDescription" />
 
-                <TextView
-                    android:id="@+id/contentTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="16dp"
-                    android:text="@{viewModel.content}"
-                    android:textStyle="normal"
-                    tools:text="This repository contains a detailed sample app that implements MVP architecture using Dagger2, GreenDao, RxJava2, FastAndroidNetworking and PlaceholderView" />
-
-                <TextView
-                    android:id="@+id/dateTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:gravity="right"
-                    android:text="@{viewModel.date}"
-                    tools:ignore="RtlHardcoded"
-                    tools:text="23 Jan 2017" />
-
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
 

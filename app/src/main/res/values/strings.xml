@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LearningApp</string>
+    <string name="app_name">NY Times Most Popular Articles</string>
 
     <!--play store-->
     <string name="app_google_play_store_link">"https://play.google.com/store/apps/details?id="</string>
