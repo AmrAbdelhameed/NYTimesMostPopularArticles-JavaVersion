@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.learningapp.data.model.api.Article;
+import com.example.learningapp.data.model.api.ArticlesResponse;
 import com.example.learningapp.ui.main.article.ArticleAdapter;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public final class BindingUtils {
     }
 
     @BindingAdapter({"adapter"})
-    public static void addArticleItems(RecyclerView recyclerView, List<Article> articles) {
+    public static void addArticleItems(RecyclerView recyclerView, List<ArticlesResponse.Article> articles) {
         ArticleAdapter adapter = (ArticleAdapter) recyclerView.getAdapter();
         if (adapter != null) {
             adapter.clearItems();

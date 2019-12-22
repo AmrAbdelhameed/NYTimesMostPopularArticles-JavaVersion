@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.learningapp.data.model.api.Article;
+import com.example.learningapp.data.model.api.ArticlesResponse;
 import com.example.learningapp.databinding.ItemArticleEmptyViewBinding;
 import com.example.learningapp.databinding.ItemArticleViewBinding;
 import com.example.learningapp.ui.base.BaseViewHolder;
@@ -19,11 +19,11 @@ public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public static final int VIEW_TYPE_NORMAL = 1;
 
-    private List<Article> articles;
+    private List<ArticlesResponse.Article> articles;
 
     private ArticleAdapterListener mListener;
 
-    public ArticleAdapter(List<Article> articles) {
+    public ArticleAdapter(List<ArticlesResponse.Article> articles) {
         this.articles = articles;
     }
 
@@ -66,7 +66,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
-    public void addItems(List<Article> articles) {
+    public void addItems(List<ArticlesResponse.Article> articles) {
         this.articles.addAll(articles);
         notifyDataSetChanged();
     }
@@ -83,7 +83,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         void onRetryClick();
 
-        void onItemClick(Article article);
+        void onItemClick(ArticlesResponse.Article article);
     }
 
     public class ArticleViewHolder extends BaseViewHolder implements ArticleItemViewModel.ArticleItemViewModelListener {
@@ -99,7 +99,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onBind(int position) {
-            final Article article = articles.get(position);
+            final ArticlesResponse.Article article = articles.get(position);
             marticleItemViewModel = new ArticleItemViewModel(article, this);
             mBinding.setViewModel(marticleItemViewModel);
 
@@ -111,7 +111,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
 
         @Override
-        public void onItemClick(Article article) {
+        public void onItemClick(ArticlesResponse.Article article) {
             if (article != null) {
                 mListener.onItemClick(article);
             }

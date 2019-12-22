@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.learningapp.BR;
 import com.example.learningapp.R;
 import com.example.learningapp.ViewModelProviderFactory;
-import com.example.learningapp.data.model.api.Article;
+import com.example.learningapp.data.model.api.ArticlesResponse;
 import com.example.learningapp.data.model.others.ArticleDetails;
 import com.example.learningapp.databinding.FragmentArticleDetailsBinding;
 import com.example.learningapp.ui.base.BaseFragment;
@@ -31,7 +31,7 @@ public class ArticleDetailsFragment extends BaseFragment<FragmentArticleDetailsB
     ViewModelProviderFactory factory;
     private FragmentArticleDetailsBinding fragmentArticleDetailsBinding;
     private ArticleDetailsViewModel articleDetailsViewModel;
-    private Article article;
+    private ArticlesResponse.Article article;
 
     @Override
     public int getBindingVariable() {
@@ -79,11 +79,11 @@ public class ArticleDetailsFragment extends BaseFragment<FragmentArticleDetailsB
         });
         fragmentArticleDetailsBinding.setArticleDetails(
                 new ArticleDetails(
-                        article.getMedia().get(0).getMediaMetadata().get(2).getUrl()
+                        article.getMedia().get(0).getMediametadata().get(2).getUrl()
                         , article.getTitle()
                         , article.getByline()
-                        , article.getAbstract()
-                        , article.getPublishedDate()
+                        , article.getAbstractX()
+                        , article.getPublished_date()
                         , article.getUrl()
                 ));
     }

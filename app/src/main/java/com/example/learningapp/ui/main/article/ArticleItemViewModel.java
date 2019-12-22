@@ -2,7 +2,7 @@ package com.example.learningapp.ui.main.article;
 
 import androidx.databinding.ObservableField;
 
-import com.example.learningapp.data.model.api.Article;
+import com.example.learningapp.data.model.api.ArticlesResponse;
 
 public class ArticleItemViewModel {
 
@@ -11,15 +11,15 @@ public class ArticleItemViewModel {
     public final ObservableField<String> title;
     public final ObservableField<String> author;
     public final ObservableField<String> date;
-    private final Article article;
+    private final ArticlesResponse.Article article;
 
-    public ArticleItemViewModel(Article article, ArticleItemViewModelListener listener) {
+    public ArticleItemViewModel(ArticlesResponse.Article article, ArticleItemViewModelListener listener) {
         this.article = article;
         this.mListener = listener;
-        imageUrl = new ObservableField<>(article.getMedia().get(0).getMediaMetadata().get(0).getUrl());
+        imageUrl = new ObservableField<>(article.getMedia().get(0).getMediametadata().get(1).getUrl());
         title = new ObservableField<>(article.getTitle());
         author = new ObservableField<>(article.getByline());
-        date = new ObservableField<>(article.getPublishedDate());
+        date = new ObservableField<>(article.getPublished_date());
     }
 
     public void onItemClick() {
@@ -28,6 +28,6 @@ public class ArticleItemViewModel {
 
     public interface ArticleItemViewModelListener {
 
-        void onItemClick(Article article);
+        void onItemClick(ArticlesResponse.Article article);
     }
 }

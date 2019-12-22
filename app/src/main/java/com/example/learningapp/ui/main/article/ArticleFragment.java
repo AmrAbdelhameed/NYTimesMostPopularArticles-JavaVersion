@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.learningapp.BR;
 import com.example.learningapp.R;
 import com.example.learningapp.ViewModelProviderFactory;
-import com.example.learningapp.data.model.api.Article;
+import com.example.learningapp.data.model.api.ArticlesResponse;
 import com.example.learningapp.databinding.FragmentArticleBinding;
 import com.example.learningapp.ui.base.BaseFragment;
 import com.example.learningapp.ui.main.MainActivity;
@@ -30,7 +30,6 @@ import javax.inject.Inject;
  */
 public class ArticleFragment extends BaseFragment<FragmentArticleBinding, ArticleViewModel>
         implements ArticleNavigator, ArticleAdapter.ArticleAdapterListener {
-    private static int period = 1;
     @Inject
     ArticleAdapter articleAdapter;
     @Inject
@@ -63,11 +62,11 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
 
     @Override
     public void onRetryClick() {
-        articleViewModel.fetchArticles(period);
+        articleViewModel.fetchArticles(7);
     }
 
     @Override
-    public void onItemClick(Article article) {
+    public void onItemClick(ArticlesResponse.Article article) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppConstants.ARTICLE, article);
         if (getActivity() != null) {
@@ -81,7 +80,7 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
     }
 
     @Override
-    public void updateArticle(List<Article> articles) {
+    public void updateArticle(List<ArticlesResponse.Article> articles) {
         articleAdapter.addItems(articles);
     }
 
