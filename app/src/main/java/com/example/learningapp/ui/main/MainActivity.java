@@ -16,7 +16,6 @@ import com.example.learningapp.ui.base.BaseActivity;
 import com.example.learningapp.ui.main.article.ArticleFragment;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
@@ -27,9 +26,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private static final String CURRENT_FRAGMENT_TAG = "current_fragment";
     @Inject
     DispatchingAndroidInjector<Object> fragmentDispatchingAndroidInjector;
-    @Inject
-    @Named("ArticleFragment")
-    ArticleFragment articleFragment;
     @Inject
     ViewModelProviderFactory factory;
     private ActivityMainBinding mActivityMainBinding;
@@ -72,7 +68,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     private void initView() {
-        replaceCurrentFragment(articleFragment, false);
+        replaceCurrentFragment(ArticleFragment.newInstance(), false);
     }
 
     private void handleOnConfigurationChanged() {
@@ -90,7 +86,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.screenContainer, fragment, CURRENT_FRAGMENT_TAG);
         if (addToBackStack)
-            fragmentTransaction.addToBackStack(articleFragment.getClass().getName());
+            fragmentTransaction.addToBackStack(fragment.getClass().getName());
         fragmentTransaction.commit();
     }
 }

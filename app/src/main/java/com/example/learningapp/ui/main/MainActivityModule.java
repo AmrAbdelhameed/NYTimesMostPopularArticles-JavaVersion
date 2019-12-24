@@ -9,9 +9,5 @@ import dagger.Provides;
 
 @Module
 public class MainActivityModule {
-    @Provides
-    @Named("ArticleFragment")
-    public ArticleFragment provideArticleFragment() {
-        return new ArticleFragment();
-    }
+
 }
