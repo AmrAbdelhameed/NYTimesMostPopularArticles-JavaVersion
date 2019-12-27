@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='LearningApp'
+rootProject.name='NYTimesMostPopularArticles_MVVM'
