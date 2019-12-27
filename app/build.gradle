@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.example.learningapp"
+        applicationId "com.example.nytimesmostpopulararticles_mvvm"
         minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
@@ -52,7 +52,7 @@ dependencies {
     implementation "com.amitshekhar.android:rx2-android-networking:1.0.2"
 
     // reactive
-    implementation "io.reactivex.rxjava2:rxjava:2.2.9"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.11"
     implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
 
     // view model
@@ -70,8 +70,12 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:2.25.2"
 
     // dependencies for local unit tests
-    testImplementation "junit:junit:4.12"
+    testImplementation 'junit:junit:4.12'
     testImplementation "org.mockito:mockito-core:2.19.0"
+    testImplementation "org.mockito:mockito-all:1.10.19"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     testAnnotationProcessor "com.google.dagger:dagger-compiler:2.25.2"
 
     // UI Testing

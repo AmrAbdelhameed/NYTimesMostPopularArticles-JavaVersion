@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.learningapp.ui.main.MainViewModel" />
+            type="com.example.nytimesmostpopulararticles_mvvm.ui.main.MainViewModel" />
     </data>
 
     <FrameLayout

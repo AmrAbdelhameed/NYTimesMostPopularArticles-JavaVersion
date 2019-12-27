@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.learningapp.ui.main.article.ArticleEmptyItemViewModel" />
+            type="com.example.nytimesmostpopulararticles_mvvm.ui.main.article.ArticleEmptyItemViewModel" />
 
     </data>
 
@@ -23,7 +23,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_rabbit"
+            app:srcCompat="@drawable/ic_articles"
             tools:ignore="ContentDescription" />
 
         <TextView

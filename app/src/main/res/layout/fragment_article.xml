@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.learningapp.ui.main.article.ArticleViewModel" />
+            type="com.example.nytimesmostpopulararticles_mvvm.ui.main.article.ArticleViewModel" />
 
     </data>
 

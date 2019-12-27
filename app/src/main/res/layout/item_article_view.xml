@@ -7,14 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.example.learningapp.ui.main.article.ArticleItemViewModel" />
+            type="com.example.nytimesmostpopulararticles_mvvm.ui.main.article.ArticleItemViewModel" />
 
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -22,7 +21,6 @@
             android:layout_margin="8dp"
             android:background="@color/white"
             android:onClick="@{() -> viewModel.onItemClick()}"
-            android:orientation="vertical"
             app:cardCornerRadius="4dp"
             app:cardElevation="4dp">
 
@@ -40,8 +38,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="ContentDescription"
-                    tools:src="@drawable/ic_rabbit" />
+                    tools:ignore="ContentDescription" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -87,9 +84,6 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toBottomOf="@+id/coverImageView"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/coverImageView"
                             app:srcCompat="@drawable/ic_date"
                             tools:ignore="ContentDescription" />
 

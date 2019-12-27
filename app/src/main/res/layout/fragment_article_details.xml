@@ -7,7 +7,7 @@
 
         <variable
             name="articleDetails"
-            type="com.example.learningapp.data.model.others.ArticleDetails" />
+            type="com.example.nytimesmostpopulararticles_mvvm.data.model.others.ArticleDetails" />
     </data>
 
 
@@ -34,8 +34,7 @@
                     android:layout_height="250dp"
                     android:scaleType="fitXY"
                     app:imageUrl="@{articleDetails.imageUrl}"
-                    tools:ignore="ContentDescription"
-                    tools:src="@drawable/ic_rabbit" />
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/titleTextView"
@@ -87,9 +86,6 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="@+id/coverImageView"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/coverImageView"
                         app:srcCompat="@drawable/ic_date"
                         tools:ignore="ContentDescription" />
 
