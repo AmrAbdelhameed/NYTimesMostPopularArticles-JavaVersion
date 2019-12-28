@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -18,7 +20,6 @@ import com.example.nytimesmostpopulararticles_mvvm.data.model.api.ArticlesRespon
 import com.example.nytimesmostpopulararticles_mvvm.databinding.FragmentArticleBinding;
 import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseFragment;
 import com.example.nytimesmostpopulararticles_mvvm.ui.main.MainActivity;
-import com.example.nytimesmostpopulararticles_mvvm.ui.main.article_details.ArticleDetailsFragment;
 import com.example.nytimesmostpopulararticles_mvvm.utils.AppConstants;
 
 import java.util.List;
@@ -36,13 +37,7 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
     ViewModelProviderFactory factory;
     private FragmentArticleBinding fragmentArticleBinding;
     private ArticleViewModel articleViewModel;
-
-    public static ArticleFragment newInstance() {
-        Bundle args = new Bundle();
-        ArticleFragment fragment = new ArticleFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private NavController navController;
 
     @Override
     public int getBindingVariable() {
@@ -69,9 +64,7 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
     public void onItemClick(ArticlesResponse.Article article) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppConstants.ARTICLE, article);
-        if (getActivity() != null) {
-            ((MainActivity) getActivity()).replaceCurrentFragment(bundle, new ArticleDetailsFragment());
-        }
+        navController.navigate(R.id.action_articleFragment_to_articleDetailsFragment, bundle);
     }
 
     @Override
@@ -94,6 +87,7 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
         fragmentArticleBinding = getViewDataBinding();
         setUp();
     }

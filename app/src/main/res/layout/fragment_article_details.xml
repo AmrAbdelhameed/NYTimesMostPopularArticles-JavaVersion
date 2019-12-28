@@ -34,7 +34,8 @@
                     android:layout_height="250dp"
                     android:scaleType="fitXY"
                     app:imageUrl="@{articleDetails.imageUrl}"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/ic_articles" />
 
                 <TextView
                     android:id="@+id/titleTextView"
