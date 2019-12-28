@@ -1,6 +1,6 @@
 # NYTimesMostPopularArticles-MVVM
 
-This repository contains a simple app to hit the NY Times Most Popular Articles API and show a list of articles, that shows details when items on the list are tapped (a typical master/detail app) that implements MVVM architecture using Dagger2, RxJava2, FastAndroidNetworking, LiveData and DataBinding
+This repository contains a simple app to hit the NY Times Most Popular Articles API and show a list of articles, that shows details when items on the list are tapped (a typical master/detail app) that implements MVVM architecture using Dagger2, RxJava2, FastAndroidNetworking, LiveData, DataBinding and Navigation Component
 
 <br>
 <p align="center">
@@ -37,6 +37,7 @@ This repository contains a simple app to hit the NY Times Most Popular Articles 
 3. Dagger2: https://github.com/MindorksOpenSource/android-dagger2-example
 4. FastAndroidNetworking: https://github.com/amitshekhariitbhu/Fast-Android-Networking
 5. DataBinding: https://developer.android.com/topic/libraries/data-binding
+6. Navigation Component: https://developer.android.com/guide/navigation/navigation-getting-started
 
 ### License
 ```
