@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.nytimesmostpopulararticles_mvvm.data.model.api.ArticlesResponse;
+import com.example.nytimesmostpopulararticles_mvvm.data.model.db.Article;
 import com.example.nytimesmostpopulararticles_mvvm.ui.main.article.ArticleAdapter;
+import com.example.nytimesmostpopulararticles_mvvm.ui.main.favorites.FavoritesAdapter;
 
 import java.util.List;
 
@@ -21,6 +23,15 @@ public final class BindingUtils {
     @BindingAdapter({"adapter"})
     public static void addArticleItems(RecyclerView recyclerView, List<ArticlesResponse.Article> articles) {
         ArticleAdapter adapter = (ArticleAdapter) recyclerView.getAdapter();
+        if (adapter != null) {
+            adapter.clearItems();
+            adapter.addItems(articles);
+        }
+    }
+
+    @BindingAdapter({"adapter"})
+    public static void addFavoritesItems(RecyclerView recyclerView, List<Article> articles) {
+        FavoritesAdapter adapter = (FavoritesAdapter) recyclerView.getAdapter();
         if (adapter != null) {
             adapter.clearItems();
             adapter.addItems(articles);

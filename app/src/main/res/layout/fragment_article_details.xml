@@ -6,10 +6,13 @@
     <data>
 
         <variable
-            name="articleDetails"
-            type="com.example.nytimesmostpopulararticles_mvvm.data.model.others.ArticleDetails" />
-    </data>
+            name="article"
+            type="com.example.nytimesmostpopulararticles_mvvm.data.model.db.Article" />
 
+        <variable
+            name="viewModel"
+            type="com.example.nytimesmostpopulararticles_mvvm.ui.main.article_details.ArticleDetailsViewModel" />
+    </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,14 +31,34 @@
                 android:orientation="vertical"
                 tools:context=".ui.main.article_details.ArticleDetailsFragment">
 
-                <ImageView
-                    android:id="@+id/coverImageView"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:scaleType="fitXY"
-                    app:imageUrl="@{articleDetails.imageUrl}"
-                    tools:ignore="ContentDescription"
-                    tools:src="@drawable/ic_articles" />
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/coverImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:scaleType="fitXY"
+                        app:imageUrl="@{article.imageUrl}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription"
+                        tools:src="@drawable/ic_articles" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:onClick="@{() -> viewModel.onFavClick(viewModel.isFavorite, article)}"
+                        android:src="@{viewModel.isFavorite ? @drawable/ic_favorite :@drawable/ic_unfavorite}"
+                        app:backgroundTint="@color/blue_black_light"
+                        app:fabSize="mini"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:src="@drawable/ic_unfavorite" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/titleTextView"
@@ -44,7 +67,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginRight="16dp"
-                    android:text="@{articleDetails.title}"
+                    android:text="@{article.title}"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="bold"
@@ -57,7 +80,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="16dp"
-                    android:text="@{articleDetails.author}"
+                    android:text="@{article.byline}"
                     android:textColor="@color/gray"
                     android:textSize="12sp"
                     tools:text="By JULIAN E. BARNES, NICHOLAS FANDOS, MICHAEL S. SCHMIDT and MATTHEW ROSENBERG" />
@@ -69,7 +92,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginRight="16dp"
-                    android:text="@{articleDetails.content}"
+                    android:text="@{article.abstractX}"
                     android:textColor="@color/gray"
                     android:textSize="12sp"
                     tools:text="The magazine said the president had abused his power and violated the Constitution. Mr. Trump responded by saying he had done more for evangelicals than any other president." />
@@ -97,7 +120,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:singleLine="true"
-                        android:text="@{articleDetails.date}"
+                        android:text="@{article.publishedDate}"
                         android:textColor="@color/gray"
                         android:textSize="12sp"
                         tools:text="2019-09-19" />
@@ -114,7 +137,7 @@
                     android:layout_marginBottom="8dp"
                     android:autoLink="web"
                     android:linksClickable="true"
-                    android:text="@{articleDetails.url}"
+                    android:text="@{article.url}"
                     android:textSize="12sp"
                     tools:text="https://google.com" />
 
@@ -126,6 +149,5 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:theme="@style/AppTheme.toolbar" />
-
     </RelativeLayout>
 </layout>

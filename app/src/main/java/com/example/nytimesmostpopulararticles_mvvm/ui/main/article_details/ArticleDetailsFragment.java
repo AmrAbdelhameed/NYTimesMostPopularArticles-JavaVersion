@@ -5,20 +5,19 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nytimesmostpopulararticles_mvvm.BR;
 import com.example.nytimesmostpopulararticles_mvvm.R;
 import com.example.nytimesmostpopulararticles_mvvm.ViewModelProviderFactory;
 import com.example.nytimesmostpopulararticles_mvvm.data.model.api.ArticlesResponse;
-import com.example.nytimesmostpopulararticles_mvvm.data.model.others.ArticleDetails;
+import com.example.nytimesmostpopulararticles_mvvm.data.model.db.Article;
 import com.example.nytimesmostpopulararticles_mvvm.databinding.FragmentArticleDetailsBinding;
 import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseFragment;
 import com.example.nytimesmostpopulararticles_mvvm.ui.main.MainActivity;
 import com.example.nytimesmostpopulararticles_mvvm.utils.AppConstants;
-
-import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -31,7 +30,7 @@ public class ArticleDetailsFragment extends BaseFragment<FragmentArticleDetailsB
     ViewModelProviderFactory factory;
     private FragmentArticleDetailsBinding fragmentArticleDetailsBinding;
     private ArticleDetailsViewModel articleDetailsViewModel;
-    private ArticlesResponse.Article article;
+    private Article article;
 
     @Override
     public int getBindingVariable() {
@@ -45,7 +44,7 @@ public class ArticleDetailsFragment extends BaseFragment<FragmentArticleDetailsB
 
     @Override
     public ArticleDetailsViewModel getViewModel() {
-        articleDetailsViewModel = ViewModelProviders.of(this, factory).get(ArticleDetailsViewModel.class);
+        articleDetailsViewModel = new ViewModelProvider(this, factory).get(ArticleDetailsViewModel.class);
         return articleDetailsViewModel;
     }
 
@@ -55,6 +54,10 @@ public class ArticleDetailsFragment extends BaseFragment<FragmentArticleDetailsB
         articleDetailsViewModel.setNavigator(this);
         if (getArguments() != null) {
             article = getArguments().getParcelable(AppConstants.ARTICLE);
+            if (article != null) {
+                // To check if article is favorite or not
+                articleDetailsViewModel.findById(article.getId());
+            }
         }
     }
 
@@ -66,25 +69,30 @@ public class ArticleDetailsFragment extends BaseFragment<FragmentArticleDetailsB
     }
 
     private void setUp() {
+        setUpToolbar();
+        setArticle();
+    }
+
+    private void setArticle() {
+        if (article != null) {
+            fragmentArticleDetailsBinding.setArticle(article);
+        }
+    }
+
+    private void setUpToolbar() {
         if (getActivity() != null) {
             ((MainActivity) getActivity()).setSupportActionBar(fragmentArticleDetailsBinding.toolbar);
-            Objects.requireNonNull(((MainActivity) getActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-            Objects.requireNonNull(((MainActivity) getActivity()).getSupportActionBar()).setDisplayShowHomeEnabled(true);
-            Objects.requireNonNull(((MainActivity) getActivity()).getSupportActionBar()).setDisplayShowTitleEnabled(false);
+            ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setDisplayShowHomeEnabled(true);
+                actionBar.setDisplayShowTitleEnabled(false);
+            }
         }
         fragmentArticleDetailsBinding.toolbar.setNavigationOnClickListener(view -> {
             if (getActivity() != null) {
                 getActivity().onBackPressed();
             }
         });
-        fragmentArticleDetailsBinding.setArticleDetails(
-                new ArticleDetails(
-                        article.getMedia().get(0).getMediametadata().get(2).getUrl()
-                        , article.getTitle()
-                        , article.getByline()
-                        , article.getAbstractX()
-                        , article.getPublished_date()
-                        , article.getUrl()
-                ));
     }
 }

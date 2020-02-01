@@ -2,7 +2,7 @@ package com.example.nytimesmostpopulararticles_mvvm.ui.main;
 
 import android.os.Bundle;
 
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nytimesmostpopulararticles_mvvm.BR;
 import com.example.nytimesmostpopulararticles_mvvm.R;
@@ -16,8 +16,8 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasAndroidInjector;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements HasAndroidInjector {
-
+public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel>
+        implements HasAndroidInjector {
     @Inject
     DispatchingAndroidInjector<Object> fragmentDispatchingAndroidInjector;
     @Inject
@@ -37,7 +37,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public MainViewModel getViewModel() {
-        mainViewModel = ViewModelProviders.of(this, factory).get(MainViewModel.class);
+        mainViewModel = new ViewModelProvider(this, factory).get(MainViewModel.class);
         return mainViewModel;
     }
 

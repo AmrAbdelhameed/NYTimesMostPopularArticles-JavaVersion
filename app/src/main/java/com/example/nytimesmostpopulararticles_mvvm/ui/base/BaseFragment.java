@@ -44,7 +44,7 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
     public abstract V getViewModel();
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof BaseActivity) {
             BaseActivity activity = (BaseActivity) context;

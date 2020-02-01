@@ -20,7 +20,7 @@ public abstract class BaseDialog extends DialogFragment {
     private BaseActivity mActivity;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof BaseActivity) {
             BaseActivity mActivity = (BaseActivity) context;

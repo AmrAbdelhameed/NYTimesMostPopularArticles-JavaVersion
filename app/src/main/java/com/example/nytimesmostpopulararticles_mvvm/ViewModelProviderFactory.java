@@ -8,6 +8,7 @@ import com.example.nytimesmostpopulararticles_mvvm.data.DataManager;
 import com.example.nytimesmostpopulararticles_mvvm.ui.main.MainViewModel;
 import com.example.nytimesmostpopulararticles_mvvm.ui.main.article.ArticleViewModel;
 import com.example.nytimesmostpopulararticles_mvvm.ui.main.article_details.ArticleDetailsViewModel;
+import com.example.nytimesmostpopulararticles_mvvm.ui.main.favorites.FavoritesViewModel;
 import com.example.nytimesmostpopulararticles_mvvm.utils.rx.SchedulerProvider;
 
 import javax.inject.Inject;
@@ -37,6 +38,9 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
         } else if (modelClass.isAssignableFrom(ArticleDetailsViewModel.class)) {
             //noinspection unchecked
             return (T) new ArticleDetailsViewModel(dataManager, schedulerProvider);
+        } else if (modelClass.isAssignableFrom(FavoritesViewModel.class)) {
+            //noinspection unchecked
+            return (T) new FavoritesViewModel(dataManager, schedulerProvider);
         }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }

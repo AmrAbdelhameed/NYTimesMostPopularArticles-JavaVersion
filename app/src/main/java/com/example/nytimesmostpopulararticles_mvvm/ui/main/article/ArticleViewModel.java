@@ -12,11 +12,14 @@ import java.util.List;
 
 public class ArticleViewModel extends BaseViewModel<ArticleNavigator> {
 
-    private final MutableLiveData<List<ArticlesResponse.Article>> articlesLiveData;
+    private final MutableLiveData<List<ArticlesResponse.Article>> articlesLiveData = new MutableLiveData<>();
 
     public ArticleViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
-        articlesLiveData = new MutableLiveData<>();
+        init();
+    }
+
+    public void init() {
         fetchArticles(7);
     }
 

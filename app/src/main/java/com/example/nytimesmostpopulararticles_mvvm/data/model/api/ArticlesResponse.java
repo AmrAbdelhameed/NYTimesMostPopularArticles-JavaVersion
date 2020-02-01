@@ -1,14 +1,10 @@
 package com.example.nytimesmostpopulararticles_mvvm.data.model.api;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class ArticlesResponse {
-
     @SerializedName("results")
     public List<Article> articles;
     private String status;
@@ -47,19 +43,8 @@ public class ArticlesResponse {
         this.articles = articles;
     }
 
-    public static class Article implements Parcelable {
-
-        public static final Creator<Article> CREATOR = new Creator<Article>() {
-            @Override
-            public Article createFromParcel(Parcel in) {
-                return new Article(in);
-            }
-
-            @Override
-            public Article[] newArray(int size) {
-                return new Article[size];
-            }
-        };
+    public static class Article {
+        private long id;
         private String url;
         private String section;
         private String byline;
@@ -72,16 +57,12 @@ public class ArticlesResponse {
         private String uri;
         private List<MediaBean> media;
 
-        protected Article(Parcel in) {
-            url = in.readString();
-            section = in.readString();
-            byline = in.readString();
-            type = in.readString();
-            title = in.readString();
-            abstractX = in.readString();
-            published_date = in.readString();
-            source = in.readString();
-            uri = in.readString();
+        public long getId() {
+            return id;
+        }
+
+        public void setId(long id) {
+            this.id = id;
         }
 
         public String getUrl() {
@@ -164,26 +145,7 @@ public class ArticlesResponse {
             this.media = media;
         }
 
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel parcel, int i) {
-            parcel.writeString(url);
-            parcel.writeString(section);
-            parcel.writeString(byline);
-            parcel.writeString(type);
-            parcel.writeString(title);
-            parcel.writeString(abstractX);
-            parcel.writeString(published_date);
-            parcel.writeString(source);
-            parcel.writeString(uri);
-        }
-
         public static class MediaBean {
-
             @SerializedName("media-metadata")
             private List<MediametadataBean> mediametadata;
 
@@ -196,7 +158,6 @@ public class ArticlesResponse {
             }
 
             public static class MediametadataBean {
-
                 private String url;
 
                 public String getUrl() {

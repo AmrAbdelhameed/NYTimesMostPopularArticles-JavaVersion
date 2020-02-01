@@ -3,9 +3,12 @@ package com.example.nytimesmostpopulararticles_mvvm.di.module;
 import android.app.Application;
 import android.content.Context;
 
+import androidx.room.Room;
+
 import com.example.nytimesmostpopulararticles_mvvm.BuildConfig;
 import com.example.nytimesmostpopulararticles_mvvm.data.AppDataManager;
 import com.example.nytimesmostpopulararticles_mvvm.data.DataManager;
+import com.example.nytimesmostpopulararticles_mvvm.data.local.db.AppDatabase;
 import com.example.nytimesmostpopulararticles_mvvm.data.local.db.AppDbHelper;
 import com.example.nytimesmostpopulararticles_mvvm.data.local.db.DbHelper;
 import com.example.nytimesmostpopulararticles_mvvm.data.local.prefs.AppPreferencesHelper;
@@ -39,6 +42,12 @@ public class AppModule {
     @ApiInfo
     String provideApiKey() {
         return BuildConfig.API_KEY;
+    }
+
+    @Provides
+    @Singleton
+    AppDatabase provideAppDatabase(@DatabaseInfo String dbName, Context context) {
+        return Room.databaseBuilder(context, AppDatabase.class, dbName).fallbackToDestructiveMigration().build();
     }
 
     @Provides

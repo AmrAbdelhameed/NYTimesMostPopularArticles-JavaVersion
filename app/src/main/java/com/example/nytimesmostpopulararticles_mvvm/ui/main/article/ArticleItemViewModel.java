@@ -9,8 +9,8 @@ public class ArticleItemViewModel {
     public final ArticleItemViewModelListener mListener;
     public final ObservableField<String> imageUrl;
     public final ObservableField<String> title;
-    public final ObservableField<String> author;
-    public final ObservableField<String> date;
+    public final ObservableField<String> byline;
+    public final ObservableField<String> publishedDate;
     private final ArticlesResponse.Article article;
 
     public ArticleItemViewModel(ArticlesResponse.Article article, ArticleItemViewModelListener listener) {
@@ -18,8 +18,8 @@ public class ArticleItemViewModel {
         this.mListener = listener;
         imageUrl = new ObservableField<>(article.getMedia().get(0).getMediametadata().get(1).getUrl());
         title = new ObservableField<>(article.getTitle());
-        author = new ObservableField<>(article.getByline());
-        date = new ObservableField<>(article.getPublished_date());
+        byline = new ObservableField<>(article.getByline());
+        publishedDate = new ObservableField<>(article.getPublished_date());
     }
 
     public void onItemClick() {

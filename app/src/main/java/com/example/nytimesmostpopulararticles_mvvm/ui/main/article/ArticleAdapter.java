@@ -102,11 +102,6 @@ public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             final ArticlesResponse.Article article = articles.get(position);
             marticleItemViewModel = new ArticleItemViewModel(article, this);
             mBinding.setViewModel(marticleItemViewModel);
-
-            // Immediate Binding
-            // When a variable or observable changes, the binding will be scheduled to change before
-            // the next frame. There are times, however, when binding must be executed immediately.
-            // To force execution, use the executePendingBindings() method.
             mBinding.executePendingBindings();
         }
 
