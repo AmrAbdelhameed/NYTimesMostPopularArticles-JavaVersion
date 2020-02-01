@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.nytimesmostpopulararticles_mvvm.BR;
 import com.example.nytimesmostpopulararticles_mvvm.R;
 import com.example.nytimesmostpopulararticles_mvvm.ViewModelProviderFactory;
-import com.example.nytimesmostpopulararticles_mvvm.data.model.api.ArticlesResponse;
 import com.example.nytimesmostpopulararticles_mvvm.data.model.db.Article;
 import com.example.nytimesmostpopulararticles_mvvm.databinding.FragmentArticleDetailsBinding;
 import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseFragment;

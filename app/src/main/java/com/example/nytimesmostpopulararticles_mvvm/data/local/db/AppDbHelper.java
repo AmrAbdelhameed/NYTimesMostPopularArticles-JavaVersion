@@ -1,5 +1,7 @@
 package com.example.nytimesmostpopulararticles_mvvm.data.local.db;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.nytimesmostpopulararticles_mvvm.data.model.db.Article;
 
 import java.util.List;
@@ -40,7 +42,7 @@ public class AppDbHelper implements DbHelper {
     }
 
     @Override
-    public Observable<List<Article>> getAllArticles() {
-        return Observable.fromCallable(() -> mAppDatabase.articleDao().loadAll());
+    public LiveData<List<Article>> getAllArticles() {
+        return mAppDatabase.articleDao().loadAll();
     }
 }

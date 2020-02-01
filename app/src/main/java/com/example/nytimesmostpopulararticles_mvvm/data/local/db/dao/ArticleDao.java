@@ -1,5 +1,6 @@
 package com.example.nytimesmostpopulararticles_mvvm.data.local.db.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -22,5 +23,5 @@ public interface ArticleDao {
     Article findById(long id);
 
     @Query("SELECT * FROM favorites")
-    List<Article> loadAll();
+    LiveData<List<Article>> loadAll();
 }

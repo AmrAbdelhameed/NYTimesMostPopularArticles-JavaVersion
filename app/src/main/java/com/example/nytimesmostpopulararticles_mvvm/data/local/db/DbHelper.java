@@ -1,5 +1,7 @@
 package com.example.nytimesmostpopulararticles_mvvm.data.local.db;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.nytimesmostpopulararticles_mvvm.data.model.db.Article;
 
 import java.util.List;
@@ -13,5 +15,5 @@ public interface DbHelper {
 
     Observable<Article> findById(long id);
 
-    Observable<List<Article>> getAllArticles();
+    LiveData<List<Article>> getAllArticles();
 }

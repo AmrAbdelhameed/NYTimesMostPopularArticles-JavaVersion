@@ -2,6 +2,8 @@ package com.example.nytimesmostpopulararticles_mvvm.data;
 
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.nytimesmostpopulararticles_mvvm.data.local.db.DbHelper;
 import com.example.nytimesmostpopulararticles_mvvm.data.local.prefs.PreferencesHelper;
 import com.example.nytimesmostpopulararticles_mvvm.data.model.api.ArticlesResponse;
@@ -62,7 +64,7 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Observable<List<Article>> getAllArticles() {
+    public LiveData<List<Article>> getAllArticles() {
         return mDbHelper.getAllArticles();
     }
 }

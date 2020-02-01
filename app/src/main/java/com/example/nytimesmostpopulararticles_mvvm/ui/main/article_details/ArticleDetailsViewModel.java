@@ -12,10 +12,11 @@ import com.example.nytimesmostpopulararticles_mvvm.utils.rx.SchedulerProvider;
 
 public class ArticleDetailsViewModel extends BaseViewModel<ArticleDetailsNavigator> {
     private static final String TAG = "ArticleDetailsViewModel";
-    private final MutableLiveData<Boolean> isFavorite = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isFavorite;
 
     public ArticleDetailsViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
+        isFavorite = new MutableLiveData<>();
     }
 
     public void insertArticle(Article article) {
@@ -26,9 +27,7 @@ public class ArticleDetailsViewModel extends BaseViewModel<ArticleDetailsNavigat
                 .subscribe(b -> {
                     Log.d(TAG, "insertArticle: " + b);
                     isFavorite.setValue(true);
-                }, throwable -> {
-                    Log.d(TAG, "insertArticle: " + throwable.getMessage());
-                }));
+                }, throwable -> Log.d(TAG, "insertArticle: " + throwable.getMessage())));
     }
 
     public void deleteArticle(Article article) {
@@ -39,9 +38,7 @@ public class ArticleDetailsViewModel extends BaseViewModel<ArticleDetailsNavigat
                 .subscribe(b -> {
                     Log.d(TAG, "deleteArticle: " + b);
                     isFavorite.setValue(false);
-                }, throwable -> {
-                    Log.d(TAG, "deleteArticle: " + throwable.getMessage());
-                }));
+                }, throwable -> Log.d(TAG, "deleteArticle: " + throwable.getMessage())));
     }
 
     public void findById(long id) {
