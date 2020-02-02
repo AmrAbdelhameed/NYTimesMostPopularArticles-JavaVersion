@@ -6,21 +6,23 @@ This repository contains a simple app to hit the NY Times Most Popular Articles 
 <p align="center">
     <img src="page1.jpg" width="250"/>
     <img src="page2.jpg" width="250"/>
+    <img src="page3.jpg" width="250"/>
 </p>
 <br>
 <br>
 
 # Project Structure
 <p align="center">
-    <img src="screen1.png" width="250"/>
-    <img src="screen2.png" width="250"/>
-    <img src="screen3.png" width="250"/>
+    <img src="project_arch_screen.jpg"/>
 </p>
 <br>
+<br>
+
+# Navigation Graph
 <p align="center">
-    <img src="screen4.png" width="250"/>
-    <img src="screen5.png" width="250"/>
+    <img src="nav_graph.png"/>
 </p>
+<br>
 <br>
 
 #### The app has following packages:
