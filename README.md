@@ -9,31 +9,28 @@ This repository contains a simple app to hit the NY Times Most Popular Articles 
     <img src="page3.jpg" width="250"/>
 </p>
 <br>
-<br>
 
-# Project Structure
-<p align="center">
-    <img src="project_arch_screen.jpg"/>
-</p>
-<br>
-<br>
-
-# Navigation Component Graph
-<p align="center">
-    <img src="nav_graph.png"/>
-</p>
-<br>
-<br>
-
-#### The app has following packages:
+#### Classes have been designed in such a way that it could be inherited and maximize the code reuse.
+## The app has following packages:
 1. **data**: It contains all the data accessing and manipulating components.
 2. **di**: Dependency providing classes using Dagger2.
 3. **ui**: View classes along with their corresponding Presenters.
 4. **utils**: Utility classes.
+<br>
 
-#### Classes have been designed in such a way that it could be inherited and maximize the code reuse.
+## Project Structure
+<p align="center">
+    <img src="project_arch_screen.jpg"/>
+</p>
+<br>
 
-### Library reference resources:
+## Navigation Component Graph
+<p align="center">
+    <img src="nav_graph.png"/>
+</p>
+<br>
+
+## Library reference resources:
 1. RxJava2: https://github.com/ReactiveX/RxJava
 2. RxAndroid: https://github.com/ReactiveX/RxAndroid
 3. Dagger2: https://github.com/MindorksOpenSource/android-dagger2-example
@@ -42,8 +39,9 @@ This repository contains a simple app to hit the NY Times Most Popular Articles 
 6. AndroidDebugDatabase: https://github.com/amitshekhariitbhu/Android-Debug-Database
 7. DataBinding: https://developer.android.com/topic/libraries/data-binding
 8. Navigation Component: https://developer.android.com/guide/navigation/navigation-getting-started
+<br>
 
-### License
+## License
 ```
    Copyright (C) 2019 Amr Abdelhameed
 
