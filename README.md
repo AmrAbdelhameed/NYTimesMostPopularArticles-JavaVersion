@@ -30,6 +30,12 @@ This repository contains a simple app to hit the NY Times Most Popular Articles 
 </p>
 <br>
 
+## Guide to app architecture
+<p align="center">
+    <img src="architecture.png"/>
+</p>
+<br>
+
 ## Library reference resources:
 1. RxJava2: https://github.com/ReactiveX/RxJava
 2. RxAndroid: https://github.com/ReactiveX/RxAndroid
