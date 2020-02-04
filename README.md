@@ -1,6 +1,6 @@
 # NYTimesMostPopularArticles_MVVM (Clean_Architecture)
 
-This repository contains a simple app to hit the NY Times Most Popular Articles API and show a list of articles, that shows details when items on the list are tapped (a typical master/detail app) that implements MVVM architecture using Dagger2, RxJava2, FastAndroidNetworking, LiveData, RoomDatabase, Database Debugging, DataBinding and Navigation Component.
+This repository contains a simple app to hit the NY Times Most Popular Articles API and show a list of articles, that shows details when items on the list are tapped (a typical master/detail app), also user able to browse/ add articles to favorite list that implements MVVM architecture using Dagger2, RxJava2, FastAndroidNetworking, LiveData, RoomDatabase, Database Debugging, DataBinding and Navigation Component.
 
 <br>
 <p align="center">
