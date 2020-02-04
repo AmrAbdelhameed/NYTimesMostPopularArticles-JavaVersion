@@ -16,7 +16,6 @@ import javax.inject.Singleton;
 
 @Singleton
 public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFactory {
-
     private final DataManager dataManager;
     private final SchedulerProvider schedulerProvider;
 
@@ -26,6 +25,7 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
         this.schedulerProvider = schedulerProvider;
     }
 
+    @SuppressWarnings("unchecked")
     @NonNull
     @Override
     public <T extends ViewModel> T create(Class<T> modelClass) {
