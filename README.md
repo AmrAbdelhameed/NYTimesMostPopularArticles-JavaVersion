@@ -47,6 +47,8 @@ This repository contains a simple app to hit the NY Times Most Popular Articles 
 8. Navigation Component: https://developer.android.com/guide/navigation/navigation-getting-started
 <br>
 
+#### Kotlin version: https://github.com/AmrAbdelhameed/NYTimesMostPopularArticles_MVVM_Kotlin
+
 ## License
 ```
    Copyright (C) 2019 Amr Abdelhameed
