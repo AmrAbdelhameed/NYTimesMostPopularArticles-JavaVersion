@@ -6,12 +6,12 @@ import com.example.nytimesmostpopulararticles_mvvm.data.model.db.Article;
 
 public class FavoritesItemViewModel {
 
-    public final FavoritesItemViewModelListener mListener;
+    private final Article article;
+    private final FavoritesItemViewModelListener mListener;
     public final ObservableField<String> imageUrl;
     public final ObservableField<String> title;
     public final ObservableField<String> byline;
     public final ObservableField<String> publishedDate;
-    private final Article article;
 
     public FavoritesItemViewModel(Article article, FavoritesItemViewModelListener listener) {
         this.article = article;

@@ -29,7 +29,7 @@ public final class BindingUtils {
         }
     }
 
-    @BindingAdapter({"adapter"})
+    @BindingAdapter({"adapter_fav"})
     public static void addFavoritesItems(RecyclerView recyclerView, List<Article> articles) {
         FavoritesAdapter adapter = (FavoritesAdapter) recyclerView.getAdapter();
         if (adapter != null) {

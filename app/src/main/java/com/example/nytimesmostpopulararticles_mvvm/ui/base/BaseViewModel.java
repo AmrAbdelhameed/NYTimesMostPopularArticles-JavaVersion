@@ -22,8 +22,7 @@ public abstract class BaseViewModel<N> extends ViewModel {
 
     private WeakReference<N> mNavigator;
 
-    public BaseViewModel(DataManager dataManager,
-                         SchedulerProvider schedulerProvider) {
+    public BaseViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
         this.mDataManager = dataManager;
         this.mSchedulerProvider = schedulerProvider;
         this.mCompositeDisposable = new CompositeDisposable();

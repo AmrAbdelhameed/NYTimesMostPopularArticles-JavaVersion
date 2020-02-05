@@ -22,8 +22,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     DispatchingAndroidInjector<Object> fragmentDispatchingAndroidInjector;
     @Inject
     ViewModelProviderFactory factory;
-    private ActivityMainBinding mActivityMainBinding;
-    private MainViewModel mainViewModel;
 
     @Override
     public int getBindingVariable() {
@@ -37,8 +35,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public MainViewModel getViewModel() {
-        mainViewModel = new ViewModelProvider(this, factory).get(MainViewModel.class);
-        return mainViewModel;
+        return new ViewModelProvider(this, factory).get(MainViewModel.class);
     }
 
     @Override
@@ -49,6 +46,5 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mActivityMainBinding = getViewDataBinding();
     }
 }

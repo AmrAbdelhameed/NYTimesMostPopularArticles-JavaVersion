@@ -69,7 +69,7 @@ public class FavoritesFragment extends BaseFragment<FragmentFavoritesBinding, Fa
     }
 
     @Override
-    public void updateArticle(List<Article> articles) {
+    public void setData(List<Article> articles) {
         favoritesAdapter.addItems(articles);
     }
 

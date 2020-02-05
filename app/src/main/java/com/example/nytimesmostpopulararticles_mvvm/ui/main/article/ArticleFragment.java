@@ -85,7 +85,7 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
     }
 
     @Override
-    public void updateArticle(List<ArticlesResponse.Article> articles) {
+    public void setData(List<ArticlesResponse.Article> articles) {
         articleAdapter.addItems(articles);
     }
 

@@ -15,12 +15,10 @@ import java.util.List;
 
 public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
-    public static final int VIEW_TYPE_EMPTY = 0;
-
-    public static final int VIEW_TYPE_NORMAL = 1;
+    private static final int VIEW_TYPE_EMPTY = 0;
+    private static final int VIEW_TYPE_NORMAL = 1;
 
     private List<ArticlesResponse.Article> articles;
-
     private ArticleAdapterListener mListener;
 
     public ArticleAdapter(List<ArticlesResponse.Article> articles) {
@@ -29,20 +27,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemCount() {
-        if (articles != null && articles.size() > 0) {
-            return articles.size();
-        } else {
-            return 1;
-        }
+        return articles != null && articles.size() > 0 ? articles.size() : 1;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (articles != null && !articles.isEmpty()) {
-            return VIEW_TYPE_NORMAL;
-        } else {
-            return VIEW_TYPE_EMPTY;
-        }
+        return articles != null && !articles.isEmpty() ? VIEW_TYPE_NORMAL : VIEW_TYPE_EMPTY;
     }
 
     @Override
@@ -55,14 +45,10 @@ public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
             case VIEW_TYPE_NORMAL:
-                ItemArticleViewBinding articleViewBinding = ItemArticleViewBinding.inflate(LayoutInflater.from(parent.getContext()),
-                        parent, false);
-                return new ArticleViewHolder(articleViewBinding);
+                return new ArticleViewHolder(ItemArticleViewBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
             case VIEW_TYPE_EMPTY:
             default:
-                ItemArticleEmptyViewBinding emptyViewBinding = ItemArticleEmptyViewBinding.inflate(LayoutInflater.from(parent.getContext()),
-                        parent, false);
-                return new EmptyViewHolder(emptyViewBinding);
+                return new EmptyViewHolder(ItemArticleEmptyViewBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
         }
     }
 
@@ -90,8 +76,6 @@ public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         private ItemArticleViewBinding mBinding;
 
-        private ArticleItemViewModel marticleItemViewModel;
-
         public ArticleViewHolder(ItemArticleViewBinding binding) {
             super(binding.getRoot());
             this.mBinding = binding;
@@ -100,8 +84,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @Override
         public void onBind(int position) {
             final ArticlesResponse.Article article = articles.get(position);
-            marticleItemViewModel = new ArticleItemViewModel(article, this);
-            mBinding.setViewModel(marticleItemViewModel);
+            mBinding.setViewModel(new ArticleItemViewModel(article, this));
             mBinding.executePendingBindings();
         }
 

@@ -15,12 +15,10 @@ import java.util.List;
 
 public class FavoritesAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
-    public static final int VIEW_TYPE_EMPTY = 0;
-
-    public static final int VIEW_TYPE_NORMAL = 1;
+    private static final int VIEW_TYPE_EMPTY = 0;
+    private static final int VIEW_TYPE_NORMAL = 1;
 
     private List<Article> articles;
-
     private FavoritesAdapterListener mListener;
 
     public FavoritesAdapter(List<Article> articles) {
@@ -29,20 +27,12 @@ public class FavoritesAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemCount() {
-        if (articles != null && articles.size() > 0) {
-            return articles.size();
-        } else {
-            return 1;
-        }
+        return articles != null && articles.size() > 0 ? articles.size() : 1;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (articles != null && !articles.isEmpty()) {
-            return VIEW_TYPE_NORMAL;
-        } else {
-            return VIEW_TYPE_EMPTY;
-        }
+        return articles != null && !articles.isEmpty() ? VIEW_TYPE_NORMAL : VIEW_TYPE_EMPTY;
     }
 
     @Override
@@ -55,14 +45,10 @@ public class FavoritesAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
             case VIEW_TYPE_NORMAL:
-                ItemFavoritesViewBinding favoritesViewBinding = ItemFavoritesViewBinding.inflate(LayoutInflater.from(parent.getContext()),
-                        parent, false);
-                return new FavoritesViewHolder(favoritesViewBinding);
+                return new FavoritesViewHolder(ItemFavoritesViewBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
             case VIEW_TYPE_EMPTY:
             default:
-                ItemFavoritesEmptyViewBinding emptyViewBinding = ItemFavoritesEmptyViewBinding.inflate(LayoutInflater.from(parent.getContext()),
-                        parent, false);
-                return new EmptyViewHolder(emptyViewBinding);
+                return new EmptyViewHolder(ItemFavoritesEmptyViewBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
         }
     }
 
@@ -88,8 +74,6 @@ public class FavoritesAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         private ItemFavoritesViewBinding mBinding;
 
-        private FavoritesItemViewModel mfavoritesItemViewModel;
-
         public FavoritesViewHolder(ItemFavoritesViewBinding binding) {
             super(binding.getRoot());
             this.mBinding = binding;
@@ -98,8 +82,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @Override
         public void onBind(int position) {
             final Article article = articles.get(position);
-            mfavoritesItemViewModel = new FavoritesItemViewModel(article, this);
-            mBinding.setViewModel(mfavoritesItemViewModel);
+            mBinding.setViewModel(new FavoritesItemViewModel(article, this));
             mBinding.executePendingBindings();
         }
 

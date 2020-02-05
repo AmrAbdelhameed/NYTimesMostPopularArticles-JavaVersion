@@ -6,12 +6,12 @@ import com.example.nytimesmostpopulararticles_mvvm.data.model.api.ArticlesRespon
 
 public class ArticleItemViewModel {
 
-    public final ArticleItemViewModelListener mListener;
+    private final ArticlesResponse.Article article;
+    private final ArticleItemViewModelListener mListener;
     public final ObservableField<String> imageUrl;
     public final ObservableField<String> title;
     public final ObservableField<String> byline;
     public final ObservableField<String> publishedDate;
-    private final ArticlesResponse.Article article;
 
     public ArticleItemViewModel(ArticlesResponse.Article article, ArticleItemViewModelListener listener) {
         this.article = article;
