@@ -9,8 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -37,7 +35,6 @@ public class FavoritesFragment extends BaseFragment<FragmentFavoritesBinding, Fa
     @Inject
     FavoritesAdapter favoritesAdapter;
     private FavoritesViewModel favoritesViewModel;
-    private NavController navController;
 
     @Override
     public int getBindingVariable() {
@@ -59,7 +56,7 @@ public class FavoritesFragment extends BaseFragment<FragmentFavoritesBinding, Fa
     public void onItemClick(Article article) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppConstants.ARTICLE, article);
-        navController.navigate(R.id.action_favoritesFragment_to_articleDetailsFragment, bundle);
+        getNavController().navigate(R.id.action_favoritesFragment_to_articleDetailsFragment, bundle);
     }
 
     @Override
@@ -82,7 +79,6 @@ public class FavoritesFragment extends BaseFragment<FragmentFavoritesBinding, Fa
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        navController = Navigation.findNavController(view);
         setUp();
     }
 

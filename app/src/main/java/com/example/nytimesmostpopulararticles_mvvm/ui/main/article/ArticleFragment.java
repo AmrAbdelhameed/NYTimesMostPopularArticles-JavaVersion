@@ -11,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -40,7 +38,6 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
     @Inject
     ArticleAdapter articleAdapter;
     private ArticleViewModel articleViewModel;
-    private NavController navController;
 
     @Override
     public int getBindingVariable() {
@@ -75,7 +72,7 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
                 , article.getUrl(),
                 article.getMedia().get(0).getMediametadata().get(1).getUrl()
         ));
-        navController.navigate(R.id.action_articleFragment_to_articleDetailsFragment, bundle);
+        getNavController().navigate(R.id.action_articleFragment_to_articleDetailsFragment, bundle);
     }
 
     @Override
@@ -98,7 +95,6 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        navController = Navigation.findNavController(view);
         setUp();
     }
 
@@ -124,7 +120,7 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_favorites) {
-            navController.navigate(R.id.action_articleFragment_to_favoritesFragment);
+            getNavController().navigate(R.id.action_articleFragment_to_favoritesFragment);
         }
         return super.onOptionsItemSelected(item);
     }

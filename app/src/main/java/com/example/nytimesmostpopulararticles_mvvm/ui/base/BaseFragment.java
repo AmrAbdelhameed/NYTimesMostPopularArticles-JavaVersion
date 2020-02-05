@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import dagger.android.support.AndroidSupportInjection;
 
@@ -18,6 +20,7 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
 
     private T mViewDataBinding;
     private V mViewModel;
+    private NavController navController;
 
     /**
      * Override for set binding variable
@@ -57,6 +60,7 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
         getViewDataBinding().setVariable(getBindingVariable(), mViewModel);
         getViewDataBinding().setLifecycleOwner(this);
         getViewDataBinding().executePendingBindings();
@@ -64,6 +68,10 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
 
     public T getViewDataBinding() {
         return mViewDataBinding;
+    }
+
+    public NavController getNavController() {
+        return navController;
     }
 
     private void performDependencyInjection() {

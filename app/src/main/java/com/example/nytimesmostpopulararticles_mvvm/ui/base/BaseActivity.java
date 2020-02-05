@@ -8,9 +8,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
-import dagger.android.AndroidInjection;
+import javax.inject.Inject;
 
-public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseViewModel> extends AppCompatActivity {
+import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasAndroidInjector;
+
+public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseViewModel> extends AppCompatActivity implements HasAndroidInjector {
+
+    @Inject
+    DispatchingAndroidInjector<Object> fragmentDispatchingAndroidInjector;
 
     /**
      * Override for set binding variable
@@ -48,5 +56,10 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
         T mViewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
         mViewDataBinding.setVariable(getBindingVariable(), getViewModel());
         mViewDataBinding.executePendingBindings();
+    }
+
+    @Override
+    public AndroidInjector<Object> androidInjector() {
+        return fragmentDispatchingAndroidInjector;
     }
 }
