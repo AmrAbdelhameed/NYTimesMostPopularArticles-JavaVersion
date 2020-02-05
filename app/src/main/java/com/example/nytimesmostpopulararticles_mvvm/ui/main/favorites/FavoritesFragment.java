@@ -36,7 +36,6 @@ public class FavoritesFragment extends BaseFragment<FragmentFavoritesBinding, Fa
     ViewModelProviderFactory factory;
     @Inject
     FavoritesAdapter favoritesAdapter;
-    private FragmentFavoritesBinding fragmentFavoritesBinding;
     private FavoritesViewModel favoritesViewModel;
     private NavController navController;
 
@@ -83,22 +82,21 @@ public class FavoritesFragment extends BaseFragment<FragmentFavoritesBinding, Fa
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        fragmentFavoritesBinding = getViewDataBinding();
         navController = Navigation.findNavController(view);
         setUp();
     }
 
     private void setUp() {
         if (getActivity() != null) {
-            ((MainActivity) getActivity()).setSupportActionBar(fragmentFavoritesBinding.toolbar);
-            fragmentFavoritesBinding.toolbar.setTitle(getString(R.string.favorites));
+            ((MainActivity) getActivity()).setSupportActionBar(getViewDataBinding().toolbar);
+            getViewDataBinding().toolbar.setTitle(getString(R.string.favorites));
             ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
             if (actionBar != null) {
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.setDisplayShowHomeEnabled(true);
             }
         }
-        fragmentFavoritesBinding.toolbar.setNavigationOnClickListener(view -> {
+        getViewDataBinding().toolbar.setNavigationOnClickListener(view -> {
             if (getActivity() != null) {
                 getActivity().onBackPressed();
             }
@@ -108,8 +106,8 @@ public class FavoritesFragment extends BaseFragment<FragmentFavoritesBinding, Fa
     }
 
     private void setUpRecyclerView() {
-        fragmentFavoritesBinding.favoritesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fragmentFavoritesBinding.favoritesRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        fragmentFavoritesBinding.favoritesRecyclerView.setAdapter(favoritesAdapter);
+        getViewDataBinding().favoritesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        getViewDataBinding().favoritesRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        getViewDataBinding().favoritesRecyclerView.setAdapter(favoritesAdapter);
     }
 }

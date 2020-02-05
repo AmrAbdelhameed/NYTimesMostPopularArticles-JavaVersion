@@ -12,9 +12,6 @@ import dagger.android.AndroidInjection;
 
 public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseViewModel> extends AppCompatActivity {
 
-    private T mViewDataBinding;
-    private V mViewModel;
-
     /**
      * Override for set binding variable
      *
@@ -48,9 +45,8 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
     }
 
     private void performDataBinding() {
-        mViewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
-        this.mViewModel = mViewModel == null ? getViewModel() : mViewModel;
-        mViewDataBinding.setVariable(getBindingVariable(), mViewModel);
+        T mViewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
+        mViewDataBinding.setVariable(getBindingVariable(), getViewModel());
         mViewDataBinding.executePendingBindings();
     }
 }

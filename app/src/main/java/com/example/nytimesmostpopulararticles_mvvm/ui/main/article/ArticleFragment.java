@@ -39,7 +39,6 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
     ViewModelProviderFactory factory;
     @Inject
     ArticleAdapter articleAdapter;
-    private FragmentArticleBinding fragmentArticleBinding;
     private ArticleViewModel articleViewModel;
     private NavController navController;
 
@@ -99,22 +98,21 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        fragmentArticleBinding = getViewDataBinding();
         navController = Navigation.findNavController(view);
         setUp();
     }
 
     private void setUp() {
         if (getActivity() != null)
-            ((MainActivity) getActivity()).setSupportActionBar(fragmentArticleBinding.toolbar);
+            ((MainActivity) getActivity()).setSupportActionBar(getViewDataBinding().toolbar);
         setHasOptionsMenu(true);
         setUpRecyclerView();
     }
 
     private void setUpRecyclerView() {
-        fragmentArticleBinding.resultsBeanRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fragmentArticleBinding.resultsBeanRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        fragmentArticleBinding.resultsBeanRecyclerView.setAdapter(articleAdapter);
+        getViewDataBinding().resultsBeanRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        getViewDataBinding().resultsBeanRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        getViewDataBinding().resultsBeanRecyclerView.setAdapter(articleAdapter);
     }
 
     @Override

@@ -57,9 +57,9 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mViewDataBinding.setVariable(getBindingVariable(), mViewModel);
-        mViewDataBinding.setLifecycleOwner(this);
-        mViewDataBinding.executePendingBindings();
+        getViewDataBinding().setVariable(getBindingVariable(), mViewModel);
+        getViewDataBinding().setLifecycleOwner(this);
+        getViewDataBinding().executePendingBindings();
     }
 
     public T getViewDataBinding() {

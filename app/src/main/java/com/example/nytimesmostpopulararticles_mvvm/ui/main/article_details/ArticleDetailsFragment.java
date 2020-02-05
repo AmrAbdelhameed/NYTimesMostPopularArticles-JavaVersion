@@ -27,7 +27,6 @@ public class ArticleDetailsFragment extends BaseFragment<FragmentArticleDetailsB
         implements ArticleDetailsNavigator {
     @Inject
     ViewModelProviderFactory factory;
-    private FragmentArticleDetailsBinding fragmentArticleDetailsBinding;
     private ArticleDetailsViewModel articleDetailsViewModel;
     private Article article;
 
@@ -63,7 +62,6 @@ public class ArticleDetailsFragment extends BaseFragment<FragmentArticleDetailsB
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        fragmentArticleDetailsBinding = getViewDataBinding();
         setUp();
     }
 
@@ -74,13 +72,13 @@ public class ArticleDetailsFragment extends BaseFragment<FragmentArticleDetailsB
 
     private void setArticle() {
         if (article != null) {
-            fragmentArticleDetailsBinding.setArticle(article);
+            getViewDataBinding().setArticle(article);
         }
     }
 
     private void setUpToolbar() {
         if (getActivity() != null) {
-            ((MainActivity) getActivity()).setSupportActionBar(fragmentArticleDetailsBinding.toolbar);
+            ((MainActivity) getActivity()).setSupportActionBar(getViewDataBinding().toolbar);
             ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
             if (actionBar != null) {
                 actionBar.setDisplayHomeAsUpEnabled(true);
@@ -88,7 +86,7 @@ public class ArticleDetailsFragment extends BaseFragment<FragmentArticleDetailsB
                 actionBar.setDisplayShowTitleEnabled(false);
             }
         }
-        fragmentArticleDetailsBinding.toolbar.setNavigationOnClickListener(view -> {
+        getViewDataBinding().toolbar.setNavigationOnClickListener(view -> {
             if (getActivity() != null) {
                 getActivity().onBackPressed();
             }
