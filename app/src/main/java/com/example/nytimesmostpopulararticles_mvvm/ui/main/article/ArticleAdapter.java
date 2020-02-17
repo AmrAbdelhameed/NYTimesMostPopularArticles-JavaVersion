@@ -76,7 +76,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         private ItemArticleViewBinding mBinding;
 
-        public ArticleViewHolder(ItemArticleViewBinding binding) {
+        ArticleViewHolder(ItemArticleViewBinding binding) {
             super(binding.getRoot());
             this.mBinding = binding;
         }
@@ -100,15 +100,15 @@ public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         private ItemArticleEmptyViewBinding mBinding;
 
-        public EmptyViewHolder(ItemArticleEmptyViewBinding binding) {
+        EmptyViewHolder(ItemArticleEmptyViewBinding binding) {
             super(binding.getRoot());
             this.mBinding = binding;
         }
 
         @Override
         public void onBind(int position) {
-            ArticleEmptyItemViewModel emptyItemViewModel = new ArticleEmptyItemViewModel(this);
-            mBinding.setViewModel(emptyItemViewModel);
+            mBinding.setViewModel(new ArticleEmptyItemViewModel(this));
+            mBinding.executePendingBindings();
         }
 
         @Override

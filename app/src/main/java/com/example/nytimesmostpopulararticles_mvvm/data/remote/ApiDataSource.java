@@ -4,7 +4,7 @@ import com.example.nytimesmostpopulararticles_mvvm.data.model.api.ArticlesRespon
 
 import io.reactivex.Single;
 
-public interface ApiHelper {
+public interface ApiDataSource {
 
     Single<ArticlesResponse> getArticles(int period);
 }

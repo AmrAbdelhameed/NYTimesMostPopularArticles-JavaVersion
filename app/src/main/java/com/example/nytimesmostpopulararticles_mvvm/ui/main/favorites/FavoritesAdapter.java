@@ -74,7 +74,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         private ItemFavoritesViewBinding mBinding;
 
-        public FavoritesViewHolder(ItemFavoritesViewBinding binding) {
+        FavoritesViewHolder(ItemFavoritesViewBinding binding) {
             super(binding.getRoot());
             this.mBinding = binding;
         }
@@ -98,15 +98,15 @@ public class FavoritesAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         private ItemFavoritesEmptyViewBinding mBinding;
 
-        public EmptyViewHolder(ItemFavoritesEmptyViewBinding binding) {
+        EmptyViewHolder(ItemFavoritesEmptyViewBinding binding) {
             super(binding.getRoot());
             this.mBinding = binding;
         }
 
         @Override
         public void onBind(int position) {
-            FavoritesEmptyItemViewModel emptyItemViewModel = new FavoritesEmptyItemViewModel();
-            mBinding.setViewModel(emptyItemViewModel);
+            mBinding.setViewModel(new FavoritesEmptyItemViewModel());
+            mBinding.executePendingBindings();
         }
     }
 }

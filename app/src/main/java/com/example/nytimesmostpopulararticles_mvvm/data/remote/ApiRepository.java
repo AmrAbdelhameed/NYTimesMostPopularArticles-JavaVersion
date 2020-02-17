@@ -10,7 +10,7 @@ import javax.inject.Singleton;
 import io.reactivex.Single;
 
 @Singleton
-public class ApiRepository implements ApiHelper {
+public class ApiRepository implements ApiDataSource {
     private final String apiKey;
     private ApiService apiService;
 
