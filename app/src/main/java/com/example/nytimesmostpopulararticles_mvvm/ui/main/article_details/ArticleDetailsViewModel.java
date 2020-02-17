@@ -5,7 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.nytimesmostpopulararticles_mvvm.data.DataManager;
+import com.example.nytimesmostpopulararticles_mvvm.data.AppDataManager;
 import com.example.nytimesmostpopulararticles_mvvm.data.model.db.Article;
 import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseViewModel;
 import com.example.nytimesmostpopulararticles_mvvm.utils.rx.SchedulerProvider;
@@ -14,14 +14,13 @@ public class ArticleDetailsViewModel extends BaseViewModel<ArticleDetailsNavigat
     private static final String TAG = "ArticleDetailsViewModel";
     private MutableLiveData<Boolean> isFavorite;
 
-    public ArticleDetailsViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
-        super(dataManager, schedulerProvider);
+    public ArticleDetailsViewModel(AppDataManager appDataManager, SchedulerProvider schedulerProvider) {
+        super(appDataManager, schedulerProvider);
         isFavorite = new MutableLiveData<>();
     }
 
     public void insertArticle(Article article) {
-        getCompositeDisposable().add(getDataManager()
-                .insertArticle(article)
+        getCompositeDisposable().add(getAppDataManager().getAppDbHelper().insertArticle(article)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(b -> {
@@ -31,8 +30,7 @@ public class ArticleDetailsViewModel extends BaseViewModel<ArticleDetailsNavigat
     }
 
     public void deleteArticle(Article article) {
-        getCompositeDisposable().add(getDataManager()
-                .deleteArticle(article)
+        getCompositeDisposable().add(getAppDataManager().getAppDbHelper().deleteArticle(article)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(b -> {
@@ -42,8 +40,7 @@ public class ArticleDetailsViewModel extends BaseViewModel<ArticleDetailsNavigat
     }
 
     public void findById(long id) {
-        getCompositeDisposable().add(getDataManager()
-                .findById(id)
+        getCompositeDisposable().add(getAppDataManager().getAppDbHelper().findById(id)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(article -> {

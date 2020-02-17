@@ -42,7 +42,7 @@ public class AppDbHelper implements DbHelper {
     }
 
     @Override
-    public LiveData<List<Article>> getAllArticles() {
+    public LiveData<List<Article>> getArticles() {
         return mAppDatabase.articleDao().loadAll();
     }
 }

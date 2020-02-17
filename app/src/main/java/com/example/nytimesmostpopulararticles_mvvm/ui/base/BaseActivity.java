@@ -18,7 +18,7 @@ import dagger.android.HasAndroidInjector;
 public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseViewModel> extends AppCompatActivity implements HasAndroidInjector {
 
     @Inject
-    DispatchingAndroidInjector<Object> fragmentDispatchingAndroidInjector;
+    DispatchingAndroidInjector<Object> dispatchingAndroidInjector;
 
     /**
      * Override for set binding variable
@@ -60,6 +60,6 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
 
     @Override
     public AndroidInjector<Object> androidInjector() {
-        return fragmentDispatchingAndroidInjector;
+        return dispatchingAndroidInjector;
     }
 }

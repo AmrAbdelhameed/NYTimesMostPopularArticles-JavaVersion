@@ -3,7 +3,7 @@ package com.example.nytimesmostpopulararticles_mvvm.ui.base;
 import androidx.databinding.ObservableBoolean;
 import androidx.lifecycle.ViewModel;
 
-import com.example.nytimesmostpopulararticles_mvvm.data.DataManager;
+import com.example.nytimesmostpopulararticles_mvvm.data.AppDataManager;
 import com.example.nytimesmostpopulararticles_mvvm.utils.rx.SchedulerProvider;
 
 import java.lang.ref.WeakReference;
@@ -12,18 +12,18 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public abstract class BaseViewModel<N> extends ViewModel {
 
-    private final DataManager mDataManager;
-
-    private final ObservableBoolean mIsLoading = new ObservableBoolean();
+    private final AppDataManager mAppDataManager;
 
     private final SchedulerProvider mSchedulerProvider;
+
+    private final ObservableBoolean mIsLoading = new ObservableBoolean();
 
     private CompositeDisposable mCompositeDisposable;
 
     private WeakReference<N> mNavigator;
 
-    public BaseViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
-        this.mDataManager = dataManager;
+    public BaseViewModel(AppDataManager appDataManager, SchedulerProvider schedulerProvider) {
+        this.mAppDataManager = appDataManager;
         this.mSchedulerProvider = schedulerProvider;
         this.mCompositeDisposable = new CompositeDisposable();
     }
@@ -38,8 +38,8 @@ public abstract class BaseViewModel<N> extends ViewModel {
         return mCompositeDisposable;
     }
 
-    public DataManager getDataManager() {
-        return mDataManager;
+    public AppDataManager getAppDataManager() {
+        return mAppDataManager;
     }
 
     public ObservableBoolean getIsLoading() {

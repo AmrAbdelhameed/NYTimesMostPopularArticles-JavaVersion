@@ -1,8 +1,8 @@
 package com.example.nytimesmostpopulararticles_mvvm.data.remote;
 
-import com.example.nytimesmostpopulararticles_mvvm.BuildConfig;
 import com.example.nytimesmostpopulararticles_mvvm.data.model.api.ArticlesResponse;
-import com.rx2androidnetworking.Rx2AndroidNetworking;
+import com.example.nytimesmostpopulararticles_mvvm.data.remote.network.ApiService;
+import com.example.nytimesmostpopulararticles_mvvm.di.ApiInfo;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -11,18 +11,17 @@ import io.reactivex.Single;
 
 @Singleton
 public class AppApiHelper implements ApiHelper {
+    private final String apiKey;
+    private ApiService apiService;
 
     @Inject
-    public AppApiHelper() {
-
+    public AppApiHelper(ApiService apiService, @ApiInfo String apiKey) {
+        this.apiKey = apiKey;
+        this.apiService = apiService;
     }
 
     @Override
-    public Single<ArticlesResponse> getArticlesApiCall(int period) {
-        return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_ARTICLES)
-                .addQueryParameter("api-key", BuildConfig.API_KEY)
-                .addPathParameter("period", String.valueOf(period))
-                .build()
-                .getObjectSingle(ArticlesResponse.class);
+    public Single<ArticlesResponse> getArticles(int period) {
+        return apiService.getArticles(period, apiKey);
     }
 }

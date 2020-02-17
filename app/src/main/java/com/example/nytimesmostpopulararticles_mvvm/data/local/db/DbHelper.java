@@ -15,5 +15,5 @@ public interface DbHelper {
 
     Observable<Article> findById(long id);
 
-    LiveData<List<Article>> getAllArticles();
+    LiveData<List<Article>> getArticles();
 }

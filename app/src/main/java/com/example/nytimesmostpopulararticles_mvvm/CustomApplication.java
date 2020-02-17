@@ -2,8 +2,6 @@ package com.example.nytimesmostpopulararticles_mvvm;
 
 import android.app.Application;
 
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.interceptors.HttpLoggingInterceptor;
 import com.example.nytimesmostpopulararticles_mvvm.di.component.DaggerAppComponent;
 
 import javax.inject.Inject;
@@ -15,7 +13,7 @@ import dagger.android.HasAndroidInjector;
 public class CustomApplication extends Application implements HasAndroidInjector {
 
     @Inject
-    DispatchingAndroidInjector<Object> activityDispatchingAndroidInjector;
+    DispatchingAndroidInjector<Object> dispatchingAndroidInjector;
 
     @Override
     public void onCreate() {
@@ -25,15 +23,10 @@ public class CustomApplication extends Application implements HasAndroidInjector
                 .application(this)
                 .build()
                 .inject(this);
-
-        AndroidNetworking.initialize(getApplicationContext());
-        if (BuildConfig.DEBUG) {
-            AndroidNetworking.enableLogging(HttpLoggingInterceptor.Level.BODY);
-        }
     }
 
     @Override
     public AndroidInjector<Object> androidInjector() {
-        return activityDispatchingAndroidInjector;
+        return dispatchingAndroidInjector;
     }
 }

@@ -63,15 +63,16 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
     @Override
     public void onItemClick(ArticlesResponse.Article article) {
         Bundle bundle = new Bundle();
-        bundle.putParcelable(AppConstants.ARTICLE, new Article(article.getId()
-                , article.getMedia().get(0).getMediametadata().get(2).getUrl()
-                , article.getTitle()
-                , article.getByline()
-                , article.getAbstractX()
-                , article.getPublished_date()
-                , article.getUrl(),
-                article.getMedia().get(0).getMediametadata().get(1).getUrl()
-        ));
+        bundle.putParcelable(AppConstants.ARTICLE,
+                new Article(article.getId()
+                        , article.getMedia().get(0).getMediametadata().get(2).getUrl()
+                        , article.getTitle()
+                        , article.getByline()
+                        , article.getAbstractX()
+                        , article.getPublished_date()
+                        , article.getUrl(),
+                        article.getMedia().get(0).getMediametadata().get(1).getUrl()
+                ));
         getNavController().navigate(R.id.action_articleFragment_to_articleDetailsFragment, bundle);
     }
 

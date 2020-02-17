@@ -1,70 +1,37 @@
 package com.example.nytimesmostpopulararticles_mvvm.data;
 
-import android.content.Context;
-
-import androidx.lifecycle.LiveData;
-
-import com.example.nytimesmostpopulararticles_mvvm.data.local.db.DbHelper;
-import com.example.nytimesmostpopulararticles_mvvm.data.local.prefs.PreferencesHelper;
-import com.example.nytimesmostpopulararticles_mvvm.data.model.api.ArticlesResponse;
-import com.example.nytimesmostpopulararticles_mvvm.data.model.db.Article;
-import com.example.nytimesmostpopulararticles_mvvm.data.remote.ApiHelper;
-import com.google.gson.Gson;
-
-import java.util.List;
+import com.example.nytimesmostpopulararticles_mvvm.data.local.db.AppDbHelper;
+import com.example.nytimesmostpopulararticles_mvvm.data.local.prefs.AppPreferencesHelper;
+import com.example.nytimesmostpopulararticles_mvvm.data.remote.AppApiHelper;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import io.reactivex.Observable;
-import io.reactivex.Single;
-
 @Singleton
 public class AppDataManager implements DataManager {
 
-    private static final String TAG = "AppDataManager";
+    private final AppApiHelper appApiHelper;
 
-    private final ApiHelper mApiHelper;
+    private final AppDbHelper appDbHelper;
 
-    private final Context mContext;
-
-    private final DbHelper mDbHelper;
-
-    private final Gson mGson;
-
-    private final PreferencesHelper mPreferencesHelper;
+    private final AppPreferencesHelper appPreferencesHelper;
 
     @Inject
-    public AppDataManager(Context context, DbHelper dbHelper, PreferencesHelper preferencesHelper, ApiHelper apiHelper, Gson gson) {
-        mContext = context;
-        mDbHelper = dbHelper;
-        mPreferencesHelper = preferencesHelper;
-        mApiHelper = apiHelper;
-        mGson = gson;
+    public AppDataManager(AppApiHelper appApiHelper, AppDbHelper appDbHelper, AppPreferencesHelper appPreferencesHelper) {
+        this.appApiHelper = appApiHelper;
+        this.appDbHelper = appDbHelper;
+        this.appPreferencesHelper = appPreferencesHelper;
     }
 
-    @Override
-    public Single<ArticlesResponse> getArticlesApiCall(int period) {
-        return mApiHelper.getArticlesApiCall(period);
+    public AppApiHelper getAppApiHelper() {
+        return appApiHelper;
     }
 
-    @Override
-    public Observable<Boolean> insertArticle(Article article) {
-        return mDbHelper.insertArticle(article);
+    public AppDbHelper getAppDbHelper() {
+        return appDbHelper;
     }
 
-    @Override
-    public Observable<Boolean> deleteArticle(Article article) {
-        return mDbHelper.deleteArticle(article);
-    }
-
-    @Override
-    public Observable<Article> findById(long id) {
-        return mDbHelper.findById(id);
-    }
-
-    @Override
-    public LiveData<List<Article>> getAllArticles() {
-        return mDbHelper.getAllArticles();
+    public AppPreferencesHelper getAppPreferencesHelper() {
+        return appPreferencesHelper;
     }
 }
