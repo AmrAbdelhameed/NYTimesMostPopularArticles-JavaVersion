@@ -10,12 +10,12 @@ import javax.inject.Singleton;
 import io.reactivex.Single;
 
 @Singleton
-public class AppApiHelper implements ApiHelper {
+public class ApiRepository implements ApiHelper {
     private final String apiKey;
     private ApiService apiService;
 
     @Inject
-    public AppApiHelper(ApiService apiService, @ApiInfo String apiKey) {
+    public ApiRepository(ApiService apiService, @ApiInfo String apiKey) {
         this.apiKey = apiKey;
         this.apiService = apiService;
     }

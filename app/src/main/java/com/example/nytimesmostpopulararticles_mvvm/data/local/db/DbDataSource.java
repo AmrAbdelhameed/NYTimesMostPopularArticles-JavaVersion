@@ -8,7 +8,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-public interface DbHelper {
+public interface DbDataSource {
     Observable<Boolean> insertArticle(Article article);
 
     Observable<Boolean> deleteArticle(Article article);

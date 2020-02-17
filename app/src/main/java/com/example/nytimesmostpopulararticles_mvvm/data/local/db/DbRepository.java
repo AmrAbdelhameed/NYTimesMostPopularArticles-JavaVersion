@@ -12,11 +12,11 @@ import javax.inject.Singleton;
 import io.reactivex.Observable;
 
 @Singleton
-public class AppDbHelper implements DbHelper {
+public class DbRepository implements DbDataSource {
     private final AppDatabase mAppDatabase;
 
     @Inject
-    public AppDbHelper(AppDatabase appDatabase) {
+    public DbRepository(AppDatabase appDatabase) {
         this.mAppDatabase = appDatabase;
     }
 

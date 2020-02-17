@@ -20,7 +20,7 @@ public class ArticleDetailsViewModel extends BaseViewModel<ArticleDetailsNavigat
     }
 
     public void insertArticle(Article article) {
-        getCompositeDisposable().add(getAppDataManager().getAppDbHelper().insertArticle(article)
+        getCompositeDisposable().add(getAppDataManager().getDbRepository().insertArticle(article)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(b -> {
@@ -30,7 +30,7 @@ public class ArticleDetailsViewModel extends BaseViewModel<ArticleDetailsNavigat
     }
 
     public void deleteArticle(Article article) {
-        getCompositeDisposable().add(getAppDataManager().getAppDbHelper().deleteArticle(article)
+        getCompositeDisposable().add(getAppDataManager().getDbRepository().deleteArticle(article)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(b -> {
@@ -40,7 +40,7 @@ public class ArticleDetailsViewModel extends BaseViewModel<ArticleDetailsNavigat
     }
 
     public void findById(long id) {
-        getCompositeDisposable().add(getAppDataManager().getAppDbHelper().findById(id)
+        getCompositeDisposable().add(getAppDataManager().getDbRepository().findById(id)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(article -> {

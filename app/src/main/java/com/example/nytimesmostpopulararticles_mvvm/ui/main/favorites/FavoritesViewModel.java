@@ -14,7 +14,7 @@ public class FavoritesViewModel extends BaseViewModel<FavoritesNavigator> {
 
     public FavoritesViewModel(AppDataManager appDataManager, SchedulerProvider schedulerProvider) {
         super(appDataManager, schedulerProvider);
-        articlesLiveData = getAppDataManager().getAppDbHelper().getArticles();
+        articlesLiveData = getAppDataManager().getDbRepository().getArticles();
     }
 
     public LiveData<List<Article>> getArticlesLiveDataLiveData() {

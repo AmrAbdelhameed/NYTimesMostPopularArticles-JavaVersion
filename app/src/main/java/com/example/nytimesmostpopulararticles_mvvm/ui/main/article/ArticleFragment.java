@@ -57,7 +57,7 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
 
     @Override
     public void onRetryClick() {
-        articleViewModel.fetchArticles(7);
+        articleViewModel.getArticles(7);
     }
 
     @Override

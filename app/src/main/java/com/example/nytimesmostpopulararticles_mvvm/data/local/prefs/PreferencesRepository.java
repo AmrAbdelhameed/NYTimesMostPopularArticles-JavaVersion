@@ -4,12 +4,12 @@ import android.content.SharedPreferences;
 
 import javax.inject.Inject;
 
-public class AppPreferencesHelper implements PreferencesHelper {
+public class PreferencesRepository implements PreferencesDataSource {
 
     private final SharedPreferences sharedPreferences;
 
     @Inject
-    public AppPreferencesHelper(SharedPreferences sharedPreferences) {
+    public PreferencesRepository(SharedPreferences sharedPreferences) {
         this.sharedPreferences = sharedPreferences;
     }
 }

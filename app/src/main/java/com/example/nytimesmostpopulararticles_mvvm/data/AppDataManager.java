@@ -1,8 +1,8 @@
 package com.example.nytimesmostpopulararticles_mvvm.data;
 
-import com.example.nytimesmostpopulararticles_mvvm.data.local.db.AppDbHelper;
-import com.example.nytimesmostpopulararticles_mvvm.data.local.prefs.AppPreferencesHelper;
-import com.example.nytimesmostpopulararticles_mvvm.data.remote.AppApiHelper;
+import com.example.nytimesmostpopulararticles_mvvm.data.local.db.DbRepository;
+import com.example.nytimesmostpopulararticles_mvvm.data.local.prefs.PreferencesRepository;
+import com.example.nytimesmostpopulararticles_mvvm.data.remote.ApiRepository;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -10,28 +10,28 @@ import javax.inject.Singleton;
 @Singleton
 public class AppDataManager implements DataManager {
 
-    private final AppApiHelper appApiHelper;
+    private final ApiRepository apiRepository;
 
-    private final AppDbHelper appDbHelper;
+    private final DbRepository dbRepository;
 
-    private final AppPreferencesHelper appPreferencesHelper;
+    private final PreferencesRepository preferencesRepository;
 
     @Inject
-    public AppDataManager(AppApiHelper appApiHelper, AppDbHelper appDbHelper, AppPreferencesHelper appPreferencesHelper) {
-        this.appApiHelper = appApiHelper;
-        this.appDbHelper = appDbHelper;
-        this.appPreferencesHelper = appPreferencesHelper;
+    public AppDataManager(ApiRepository apiRepository, DbRepository dbRepository, PreferencesRepository preferencesRepository) {
+        this.apiRepository = apiRepository;
+        this.dbRepository = dbRepository;
+        this.preferencesRepository = preferencesRepository;
     }
 
-    public AppApiHelper getAppApiHelper() {
-        return appApiHelper;
+    public ApiRepository getApiRepository() {
+        return apiRepository;
     }
 
-    public AppDbHelper getAppDbHelper() {
-        return appDbHelper;
+    public DbRepository getDbRepository() {
+        return dbRepository;
     }
 
-    public AppPreferencesHelper getAppPreferencesHelper() {
-        return appPreferencesHelper;
+    public PreferencesRepository getPreferencesRepository() {
+        return preferencesRepository;
     }
 }

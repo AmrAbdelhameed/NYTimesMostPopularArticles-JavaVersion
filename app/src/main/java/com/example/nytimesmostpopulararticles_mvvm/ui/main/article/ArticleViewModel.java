@@ -17,12 +17,12 @@ public class ArticleViewModel extends BaseViewModel<ArticleNavigator> {
     public ArticleViewModel(AppDataManager appDataManager, SchedulerProvider schedulerProvider) {
         super(appDataManager, schedulerProvider);
         articlesLiveData = new MutableLiveData<>();
-        fetchArticles(7);
+        getArticles(7);
     }
 
-    public void fetchArticles(int period) {
+    public void getArticles(int period) {
         setIsLoading(true);
-        getCompositeDisposable().add(getAppDataManager().getAppApiHelper().getArticles(period)
+        getCompositeDisposable().add(getAppDataManager().getApiRepository().getArticles(period)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(articlesResponse -> {
