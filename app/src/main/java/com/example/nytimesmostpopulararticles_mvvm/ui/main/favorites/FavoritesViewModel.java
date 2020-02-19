@@ -1,5 +1,7 @@
 package com.example.nytimesmostpopulararticles_mvvm.ui.main.favorites;
 
+import android.app.Application;
+
 import androidx.lifecycle.LiveData;
 
 import com.example.nytimesmostpopulararticles_mvvm.data.AppDataManager;
@@ -12,8 +14,8 @@ import java.util.List;
 public class FavoritesViewModel extends BaseViewModel<FavoritesNavigator> {
     private LiveData<List<Article>> articlesLiveData;
 
-    public FavoritesViewModel(AppDataManager appDataManager, SchedulerProvider schedulerProvider) {
-        super(appDataManager, schedulerProvider);
+    public FavoritesViewModel(Application application, AppDataManager appDataManager, SchedulerProvider schedulerProvider) {
+        super(application, appDataManager, schedulerProvider);
         articlesLiveData = getAppDataManager().getDbRepository().getArticles();
     }
 

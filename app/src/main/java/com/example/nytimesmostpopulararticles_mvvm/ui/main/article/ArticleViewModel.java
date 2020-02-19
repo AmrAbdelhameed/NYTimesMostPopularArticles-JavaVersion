@@ -1,5 +1,7 @@
 package com.example.nytimesmostpopulararticles_mvvm.ui.main.article;
 
+import android.app.Application;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -14,8 +16,8 @@ public class ArticleViewModel extends BaseViewModel<ArticleNavigator> {
 
     private MutableLiveData<List<ArticlesResponse.Article>> articlesLiveData;
 
-    public ArticleViewModel(AppDataManager appDataManager, SchedulerProvider schedulerProvider) {
-        super(appDataManager, schedulerProvider);
+    public ArticleViewModel(Application application, AppDataManager appDataManager, SchedulerProvider schedulerProvider) {
+        super(application, appDataManager, schedulerProvider);
         articlesLiveData = new MutableLiveData<>();
         getArticles(7);
     }

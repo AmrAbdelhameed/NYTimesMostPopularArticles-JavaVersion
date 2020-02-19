@@ -1,5 +1,6 @@
 package com.example.nytimesmostpopulararticles_mvvm.ui.main.article_details;
 
+import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -14,8 +15,8 @@ public class ArticleDetailsViewModel extends BaseViewModel<ArticleDetailsNavigat
     private static final String TAG = "ArticleDetailsViewModel";
     private MutableLiveData<Boolean> isFavorite;
 
-    public ArticleDetailsViewModel(AppDataManager appDataManager, SchedulerProvider schedulerProvider) {
-        super(appDataManager, schedulerProvider);
+    public ArticleDetailsViewModel(Application application, AppDataManager appDataManager, SchedulerProvider schedulerProvider) {
+        super(application, appDataManager, schedulerProvider);
         isFavorite = new MutableLiveData<>();
     }
 

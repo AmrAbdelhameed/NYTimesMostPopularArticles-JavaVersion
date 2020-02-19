@@ -1,5 +1,7 @@
 package com.example.nytimesmostpopulararticles_mvvm.ui.base;
 
+import android.app.Application;
+
 import androidx.databinding.ObservableBoolean;
 import androidx.lifecycle.ViewModel;
 
@@ -12,6 +14,8 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public abstract class BaseViewModel<N> extends ViewModel {
 
+    private final Application application;
+
     private final AppDataManager mAppDataManager;
 
     private final SchedulerProvider mSchedulerProvider;
@@ -22,7 +26,8 @@ public abstract class BaseViewModel<N> extends ViewModel {
 
     private WeakReference<N> mNavigator;
 
-    public BaseViewModel(AppDataManager appDataManager, SchedulerProvider schedulerProvider) {
+    public BaseViewModel(Application application, AppDataManager appDataManager, SchedulerProvider schedulerProvider) {
+        this.application = application;
         this.mAppDataManager = appDataManager;
         this.mSchedulerProvider = schedulerProvider;
         this.mCompositeDisposable = new CompositeDisposable();
@@ -32,6 +37,10 @@ public abstract class BaseViewModel<N> extends ViewModel {
     protected void onCleared() {
         mCompositeDisposable.dispose();
         super.onCleared();
+    }
+
+    public Application getApplication() {
+        return application;
     }
 
     public CompositeDisposable getCompositeDisposable() {
