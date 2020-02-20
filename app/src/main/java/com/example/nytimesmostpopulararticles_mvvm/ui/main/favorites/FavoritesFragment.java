@@ -60,8 +60,8 @@ public class FavoritesFragment extends BaseFragment<FragmentFavoritesBinding, Fa
     }
 
     @Override
-    public void handleError(Throwable throwable) {
-        Toast.makeText(getActivity(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+    public void handleError(String message) {
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

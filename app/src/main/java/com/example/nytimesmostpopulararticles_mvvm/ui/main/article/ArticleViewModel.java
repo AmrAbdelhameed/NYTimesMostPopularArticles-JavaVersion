@@ -34,7 +34,7 @@ public class ArticleViewModel extends BaseViewModel<ArticleNavigator> {
                     setIsLoading(false);
                 }, throwable -> {
                     setIsLoading(false);
-                    getNavigator().handleError(throwable);
+                    getNavigator().handleError(throwable.getMessage());
                 }));
     }
 

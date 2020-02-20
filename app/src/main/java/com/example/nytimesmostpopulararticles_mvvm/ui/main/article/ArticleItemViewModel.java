@@ -3,6 +3,7 @@ package com.example.nytimesmostpopulararticles_mvvm.ui.main.article;
 import androidx.databinding.ObservableField;
 
 import com.example.nytimesmostpopulararticles_mvvm.data.model.api.ArticlesResponse;
+import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseItemListener;
 
 public class ArticleItemViewModel {
 
@@ -26,8 +27,7 @@ public class ArticleItemViewModel {
         mListener.onItemClick(article);
     }
 
-    public interface ArticleItemViewModelListener {
+    public interface ArticleItemViewModelListener extends BaseItemListener<ArticlesResponse.Article> {
 
-        void onItemClick(ArticlesResponse.Article article);
     }
 }

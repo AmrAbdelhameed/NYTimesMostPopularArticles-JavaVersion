@@ -3,6 +3,7 @@ package com.example.nytimesmostpopulararticles_mvvm.ui.main.favorites;
 import androidx.databinding.ObservableField;
 
 import com.example.nytimesmostpopulararticles_mvvm.data.model.db.Article;
+import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseItemListener;
 
 public class FavoritesItemViewModel {
 
@@ -26,8 +27,7 @@ public class FavoritesItemViewModel {
         mListener.onItemClick(article);
     }
 
-    public interface FavoritesItemViewModelListener {
+    public interface FavoritesItemViewModelListener extends BaseItemListener<Article> {
 
-        void onItemClick(Article article);
     }
 }

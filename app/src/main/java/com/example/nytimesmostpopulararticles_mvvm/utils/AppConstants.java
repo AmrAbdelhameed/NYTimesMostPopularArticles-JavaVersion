@@ -10,6 +10,10 @@ public final class AppConstants {
 
     public static final String ARTICLE = "article";
 
+    public static final int VIEW_TYPE_EMPTY = 0;
+
+    public static final int VIEW_TYPE_NORMAL = 1;
+
     private AppConstants() {
         // This utility class is not publicly instantiable
     }

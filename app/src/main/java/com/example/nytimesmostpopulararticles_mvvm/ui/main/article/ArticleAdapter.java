@@ -4,40 +4,35 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nytimesmostpopulararticles_mvvm.data.model.api.ArticlesResponse;
 import com.example.nytimesmostpopulararticles_mvvm.databinding.ItemArticleEmptyViewBinding;
 import com.example.nytimesmostpopulararticles_mvvm.databinding.ItemArticleViewBinding;
+import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseRecyclerViewAdapter;
+import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseEmptyItemListener;
+import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseItemListener;
 import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseViewHolder;
 
 import java.util.List;
 
-public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+import static com.example.nytimesmostpopulararticles_mvvm.utils.AppConstants.VIEW_TYPE_EMPTY;
+import static com.example.nytimesmostpopulararticles_mvvm.utils.AppConstants.VIEW_TYPE_NORMAL;
 
-    private static final int VIEW_TYPE_EMPTY = 0;
-    private static final int VIEW_TYPE_NORMAL = 1;
+public class ArticleAdapter extends BaseRecyclerViewAdapter<ArticlesResponse.Article> {
 
-    private List<ArticlesResponse.Article> articles;
     private ArticleAdapterListener mListener;
 
     public ArticleAdapter(List<ArticlesResponse.Article> articles) {
-        this.articles = articles;
+        super(articles);
     }
 
-    @Override
-    public int getItemCount() {
-        return articles != null && articles.size() > 0 ? articles.size() : 1;
+    public void setListener(ArticleAdapterListener listener) {
+        this.mListener = listener;
     }
 
     @Override
     public int getItemViewType(int position) {
-        return articles != null && !articles.isEmpty() ? VIEW_TYPE_NORMAL : VIEW_TYPE_EMPTY;
-    }
-
-    @Override
-    public void onBindViewHolder(BaseViewHolder holder, int position) {
-        holder.onBind(position);
+        return getItems() != null && !getItems().isEmpty() ? VIEW_TYPE_NORMAL : VIEW_TYPE_EMPTY;
     }
 
     @NonNull
@@ -52,24 +47,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
-    public void addItems(List<ArticlesResponse.Article> articles) {
-        this.articles.addAll(articles);
-        notifyDataSetChanged();
-    }
+    public interface ArticleAdapterListener extends BaseItemListener<ArticlesResponse.Article>, BaseEmptyItemListener {
 
-    public void clearItems() {
-        articles.clear();
-    }
-
-    public void setListener(ArticleAdapterListener listener) {
-        this.mListener = listener;
-    }
-
-    public interface ArticleAdapterListener {
-
-        void onRetryClick();
-
-        void onItemClick(ArticlesResponse.Article article);
     }
 
     public class ArticleViewHolder extends BaseViewHolder implements ArticleItemViewModel.ArticleItemViewModelListener {
@@ -83,7 +62,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onBind(int position) {
-            final ArticlesResponse.Article article = articles.get(position);
+            final ArticlesResponse.Article article = getItems().get(position);
             mBinding.setViewModel(new ArticleItemViewModel(article, this));
             mBinding.executePendingBindings();
         }
@@ -96,7 +75,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
-    public class EmptyViewHolder extends BaseViewHolder implements ArticleEmptyItemViewModel.ArticleEmptyItemViewModelListener {
+    public class EmptyViewHolder extends BaseViewHolder implements BaseEmptyItemListener {
 
         private ItemArticleEmptyViewBinding mBinding;
 
