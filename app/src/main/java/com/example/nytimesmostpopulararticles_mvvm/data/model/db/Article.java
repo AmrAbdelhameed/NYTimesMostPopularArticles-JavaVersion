@@ -1,25 +1,11 @@
 package com.example.nytimesmostpopulararticles_mvvm.data.model.db;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "favorites")
-public class Article implements Parcelable {
-    public static final Creator<Article> CREATOR = new Creator<Article>() {
-        @Override
-        public Article createFromParcel(Parcel in) {
-            return new Article(in);
-        }
-
-        @Override
-        public Article[] newArray(int size) {
-            return new Article[size];
-        }
-    };
+public class Article {
     @PrimaryKey
     private long id;
     @ColumnInfo(name = "image_url")
@@ -43,17 +29,6 @@ public class Article implements Parcelable {
         this.publishedDate = publishedDate;
         this.url = url;
         this.coverImageUrl = coverImageUrl;
-    }
-
-    protected Article(Parcel in) {
-        id = in.readLong();
-        imageUrl = in.readString();
-        title = in.readString();
-        byline = in.readString();
-        abstractX = in.readString();
-        publishedDate = in.readString();
-        url = in.readString();
-        coverImageUrl = in.readString();
     }
 
     public long getId() {
@@ -86,22 +61,5 @@ public class Article implements Parcelable {
 
     public String getCoverImageUrl() {
         return coverImageUrl;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeLong(id);
-        parcel.writeString(imageUrl);
-        parcel.writeString(title);
-        parcel.writeString(byline);
-        parcel.writeString(abstractX);
-        parcel.writeString(publishedDate);
-        parcel.writeString(url);
-        parcel.writeString(coverImageUrl);
     }
 }

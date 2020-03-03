@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.nytimesmostpopulararticles_mvvm.data.AppDataManager;
 import com.example.nytimesmostpopulararticles_mvvm.data.model.db.Article;
 import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseViewModel;
+import com.example.nytimesmostpopulararticles_mvvm.ui.main.article.ArticleDataItem;
 import com.example.nytimesmostpopulararticles_mvvm.utils.rx.SchedulerProvider;
 
 public class ArticleDetailsViewModel extends BaseViewModel<ArticleDetailsNavigator> {
@@ -20,8 +21,17 @@ public class ArticleDetailsViewModel extends BaseViewModel<ArticleDetailsNavigat
         isFavorite = new MutableLiveData<>();
     }
 
-    public void insertArticle(Article article) {
-        getCompositeDisposable().add(getAppDataManager().getDbRepository().insertArticle(article)
+    public void insertArticle(ArticleDataItem articleDataItem) {
+        getCompositeDisposable().add(getAppDataManager().getDbRepository().insertArticle(
+                new Article(articleDataItem.getId()
+                        , articleDataItem.getImageUrl()
+                        , articleDataItem.getTitle()
+                        , articleDataItem.getByline()
+                        , articleDataItem.getAbstractX()
+                        , articleDataItem.getPublishedDate()
+                        , articleDataItem.getUrl()
+                        , articleDataItem.getCoverImageUrl())
+        )
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(b -> {
@@ -30,8 +40,16 @@ public class ArticleDetailsViewModel extends BaseViewModel<ArticleDetailsNavigat
                 }, throwable -> Log.d(TAG, "insertArticle: " + throwable.getMessage())));
     }
 
-    public void deleteArticle(Article article) {
-        getCompositeDisposable().add(getAppDataManager().getDbRepository().deleteArticle(article)
+    public void deleteArticle(ArticleDataItem articleDataItem) {
+        getCompositeDisposable().add(getAppDataManager().getDbRepository().deleteArticle(
+                new Article(articleDataItem.getId()
+                        , articleDataItem.getImageUrl()
+                        , articleDataItem.getTitle()
+                        , articleDataItem.getByline()
+                        , articleDataItem.getAbstractX()
+                        , articleDataItem.getPublishedDate()
+                        , articleDataItem.getUrl()
+                        , articleDataItem.getCoverImageUrl()))
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(b -> {
@@ -53,11 +71,11 @@ public class ArticleDetailsViewModel extends BaseViewModel<ArticleDetailsNavigat
                 }));
     }
 
-    public void onFavClick(boolean isFavorite, Article article) {
+    public void onFavClick(boolean isFavorite, ArticleDataItem articleDataItem) {
         if (isFavorite)
-            deleteArticle(article);
+            deleteArticle(articleDataItem);
         else
-            insertArticle(article);
+            insertArticle(articleDataItem);
     }
 
     public LiveData<Boolean> getIsFavorite() {

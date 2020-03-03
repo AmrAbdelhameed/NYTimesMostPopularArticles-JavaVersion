@@ -19,6 +19,7 @@ import com.example.nytimesmostpopulararticles_mvvm.data.model.db.Article;
 import com.example.nytimesmostpopulararticles_mvvm.databinding.FragmentFavoritesBinding;
 import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseFragment;
 import com.example.nytimesmostpopulararticles_mvvm.ui.main.MainActivity;
+import com.example.nytimesmostpopulararticles_mvvm.ui.main.article.ArticleDataItem;
 import com.example.nytimesmostpopulararticles_mvvm.utils.AppConstants;
 
 import java.util.List;
@@ -55,7 +56,14 @@ public class FavoritesFragment extends BaseFragment<FragmentFavoritesBinding, Fa
     @Override
     public void onItemClick(Article article) {
         Bundle bundle = new Bundle();
-        bundle.putParcelable(AppConstants.ARTICLE, article);
+        bundle.putParcelable(AppConstants.ARTICLE, new ArticleDataItem(article.getId()
+                , article.getImageUrl()
+                , article.getTitle()
+                , article.getByline()
+                , article.getAbstractX()
+                , article.getPublishedDate()
+                , article.getUrl()
+                , article.getCoverImageUrl()));
         getNavController().navigate(R.id.action_favoritesFragment_to_articleDetailsFragment, bundle);
     }
 

@@ -17,11 +17,6 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
         holder.onBind(position);
     }
 
-    @Override
-    public int getItemCount() {
-        return items != null && items.size() > 0 ? items.size() : 1;
-    }
-
     public void addItems(List<T> items) {
         this.items.addAll(items);
         notifyDataSetChanged();

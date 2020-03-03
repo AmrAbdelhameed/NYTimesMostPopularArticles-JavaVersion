@@ -12,10 +12,10 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.nytimesmostpopulararticles_mvvm.BR;
 import com.example.nytimesmostpopulararticles_mvvm.R;
 import com.example.nytimesmostpopulararticles_mvvm.ViewModelProviderFactory;
-import com.example.nytimesmostpopulararticles_mvvm.data.model.db.Article;
 import com.example.nytimesmostpopulararticles_mvvm.databinding.FragmentArticleDetailsBinding;
 import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseFragment;
 import com.example.nytimesmostpopulararticles_mvvm.ui.main.MainActivity;
+import com.example.nytimesmostpopulararticles_mvvm.ui.main.article.ArticleDataItem;
 import com.example.nytimesmostpopulararticles_mvvm.utils.AppConstants;
 
 import javax.inject.Inject;
@@ -28,7 +28,7 @@ public class ArticleDetailsFragment extends BaseFragment<FragmentArticleDetailsB
     @Inject
     ViewModelProviderFactory factory;
     private ArticleDetailsViewModel articleDetailsViewModel;
-    private Article article;
+    private ArticleDataItem articleDataItem;
 
     @Override
     public int getBindingVariable() {
@@ -51,10 +51,10 @@ public class ArticleDetailsFragment extends BaseFragment<FragmentArticleDetailsB
         super.onCreate(savedInstanceState);
         articleDetailsViewModel.setNavigator(this);
         if (getArguments() != null) {
-            article = getArguments().getParcelable(AppConstants.ARTICLE);
-            if (article != null) {
+            articleDataItem = getArguments().getParcelable(AppConstants.ARTICLE);
+            if (articleDataItem != null) {
                 // To check if article is favorite or not
-                articleDetailsViewModel.findById(article.getId());
+                articleDetailsViewModel.findById(articleDataItem.getId());
             }
         }
     }
@@ -71,8 +71,8 @@ public class ArticleDetailsFragment extends BaseFragment<FragmentArticleDetailsB
     }
 
     private void setArticle() {
-        if (article != null) {
-            getViewDataBinding().setArticle(article);
+        if (articleDataItem != null) {
+            getViewDataBinding().setArticle(articleDataItem);
         }
     }
 

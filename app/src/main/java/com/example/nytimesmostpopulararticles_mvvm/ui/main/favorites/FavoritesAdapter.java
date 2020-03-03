@@ -30,6 +30,11 @@ public class FavoritesAdapter extends BaseRecyclerViewAdapter<Article> {
     }
 
     @Override
+    public int getItemCount() {
+        return getItems() != null && getItems().size() > 0 ? getItems().size() : 1;
+    }
+
+    @Override
     public int getItemViewType(int position) {
         return getItems() != null && !getItems().isEmpty() ? VIEW_TYPE_NORMAL : VIEW_TYPE_EMPTY;
     }

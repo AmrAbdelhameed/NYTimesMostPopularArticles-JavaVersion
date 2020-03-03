@@ -17,8 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.nytimesmostpopulararticles_mvvm.BR;
 import com.example.nytimesmostpopulararticles_mvvm.R;
 import com.example.nytimesmostpopulararticles_mvvm.ViewModelProviderFactory;
-import com.example.nytimesmostpopulararticles_mvvm.data.model.api.ArticlesResponse;
-import com.example.nytimesmostpopulararticles_mvvm.data.model.db.Article;
 import com.example.nytimesmostpopulararticles_mvvm.databinding.FragmentArticleBinding;
 import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseFragment;
 import com.example.nytimesmostpopulararticles_mvvm.ui.main.MainActivity;
@@ -61,18 +59,9 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
     }
 
     @Override
-    public void onItemClick(ArticlesResponse.Article article) {
+    public void onItemClick(ArticleDataItem articleDataItem) {
         Bundle bundle = new Bundle();
-        bundle.putParcelable(AppConstants.ARTICLE,
-                new Article(article.getId()
-                        , article.getMedia().get(0).getMediametadata().get(2).getUrl()
-                        , article.getTitle()
-                        , article.getByline()
-                        , article.getAbstractX()
-                        , article.getPublished_date()
-                        , article.getUrl(),
-                        article.getMedia().get(0).getMediametadata().get(1).getUrl()
-                ));
+        bundle.putParcelable(AppConstants.ARTICLE, articleDataItem);
         getNavController().navigate(R.id.action_articleFragment_to_articleDetailsFragment, bundle);
     }
 
@@ -82,8 +71,8 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
     }
 
     @Override
-    public void setData(List<ArticlesResponse.Article> articles) {
-        articleAdapter.addItems(articles);
+    public void setData(List<ArticleDataItem> articleDataItems) {
+        articleAdapter.addItems(articleDataItems);
     }
 
     @Override
