@@ -5,7 +5,6 @@ import dagger.android.ContributesAndroidInjector;
 
 @Module
 public abstract class ArticleFragmentProvider {
-
     @ContributesAndroidInjector(modules = ArticleFragmentModule.class)
     abstract ArticleFragment provideArticleFragmentFactory();
 }

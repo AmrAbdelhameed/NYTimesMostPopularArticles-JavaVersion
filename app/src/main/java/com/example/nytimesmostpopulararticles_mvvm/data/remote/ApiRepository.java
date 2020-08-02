@@ -11,13 +11,13 @@ import io.reactivex.Single;
 
 @Singleton
 public class ApiRepository implements ApiDataSource {
-    private final String apiKey;
     private ApiService apiService;
+    private final String apiKey;
 
     @Inject
     public ApiRepository(ApiService apiService, @ApiInfo String apiKey) {
-        this.apiKey = apiKey;
         this.apiService = apiService;
+        this.apiKey = apiKey;
     }
 
     @Override

@@ -18,7 +18,6 @@ import static com.example.nytimesmostpopulararticles_mvvm.utils.AppConstants.VIE
 import static com.example.nytimesmostpopulararticles_mvvm.utils.AppConstants.VIEW_TYPE_NORMAL;
 
 public class FavoritesAdapter extends BaseRecyclerViewAdapter<Article> {
-
     private FavoritesAdapterListener mListener;
 
     public FavoritesAdapter(List<Article> articles) {
@@ -85,7 +84,6 @@ public class FavoritesAdapter extends BaseRecyclerViewAdapter<Article> {
     }
 
     public class EmptyViewHolder extends BaseViewHolder {
-
         private ItemFavoritesEmptyViewBinding mBinding;
 
         EmptyViewHolder(ItemFavoritesEmptyViewBinding binding) {

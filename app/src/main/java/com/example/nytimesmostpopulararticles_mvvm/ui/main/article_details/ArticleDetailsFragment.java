@@ -23,8 +23,7 @@ import javax.inject.Inject;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ArticleDetailsFragment extends BaseFragment<FragmentArticleDetailsBinding, ArticleDetailsViewModel>
-        implements ArticleDetailsNavigator {
+public class ArticleDetailsFragment extends BaseFragment<FragmentArticleDetailsBinding, ArticleDetailsViewModel> {
     @Inject
     ViewModelProviderFactory factory;
     private ArticleDetailsViewModel articleDetailsViewModel;
@@ -49,7 +48,6 @@ public class ArticleDetailsFragment extends BaseFragment<FragmentArticleDetailsB
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        articleDetailsViewModel.setNavigator(this);
         if (getArguments() != null) {
             articleDataItem = getArguments().getParcelable(AppConstants.ARTICLE);
             if (articleDataItem != null) {

@@ -12,7 +12,7 @@ import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseViewModel;
 import com.example.nytimesmostpopulararticles_mvvm.ui.main.article.ArticleDataItem;
 import com.example.nytimesmostpopulararticles_mvvm.utils.rx.SchedulerProvider;
 
-public class ArticleDetailsViewModel extends BaseViewModel<ArticleDetailsNavigator> {
+public class ArticleDetailsViewModel extends BaseViewModel {
     private static final String TAG = "ArticleDetailsViewModel";
     private MutableLiveData<Boolean> isFavorite;
 

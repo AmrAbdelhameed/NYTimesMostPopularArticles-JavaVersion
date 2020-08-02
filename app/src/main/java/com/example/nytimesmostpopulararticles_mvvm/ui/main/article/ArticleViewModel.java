@@ -13,7 +13,7 @@ import com.example.nytimesmostpopulararticles_mvvm.utils.rx.SchedulerProvider;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArticleViewModel extends BaseViewModel<ArticleNavigator> {
+public class ArticleViewModel extends BaseViewModel {
 
     private MutableLiveData<List<ArticleDataItem>> articlesLiveData;
 
@@ -35,11 +35,11 @@ public class ArticleViewModel extends BaseViewModel<ArticleNavigator> {
                     setIsLoading(false);
                 }, throwable -> {
                     setIsLoading(false);
-                    getNavigator().handleError(throwable.getMessage());
+                    setShowToast(throwable.getMessage());
                 }));
     }
 
-    public LiveData<List<ArticleDataItem>> getArticlesLiveDataLiveData() {
+    public LiveData<List<ArticleDataItem>> getArticlesLiveData() {
         return articlesLiveData;
     }
 

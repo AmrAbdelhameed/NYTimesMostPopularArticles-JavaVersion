@@ -10,8 +10,6 @@ import com.example.nytimesmostpopulararticles_mvvm.BuildConfig;
 import com.example.nytimesmostpopulararticles_mvvm.data.local.db.AppDatabase;
 import com.example.nytimesmostpopulararticles_mvvm.data.remote.network.ApiService;
 import com.example.nytimesmostpopulararticles_mvvm.di.ApiInfo;
-import com.example.nytimesmostpopulararticles_mvvm.di.DatabaseInfo;
-import com.example.nytimesmostpopulararticles_mvvm.di.PreferenceInfo;
 import com.example.nytimesmostpopulararticles_mvvm.utils.AppConstants;
 import com.example.nytimesmostpopulararticles_mvvm.utils.rx.AppSchedulerProvider;
 import com.example.nytimesmostpopulararticles_mvvm.utils.rx.SchedulerProvider;
@@ -26,7 +24,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class AppModule {
-
     @Provides
     @Singleton
     Context provideContext(Application application) {
@@ -56,27 +53,15 @@ public class AppModule {
     }
 
     @Provides
-    @DatabaseInfo
-    String provideDatabaseName() {
-        return AppConstants.DB_NAME;
+    @Singleton
+    AppDatabase provideAppDatabase(Context context) {
+        return Room.databaseBuilder(context, AppDatabase.class, AppConstants.DB_NAME).fallbackToDestructiveMigration().build();
     }
 
     @Provides
     @Singleton
-    AppDatabase provideAppDatabase(@DatabaseInfo String dbName, Context context) {
-        return Room.databaseBuilder(context, AppDatabase.class, dbName).fallbackToDestructiveMigration().build();
-    }
-
-    @Provides
-    @PreferenceInfo
-    String providePreferenceName() {
-        return AppConstants.PREF_NAME;
-    }
-
-    @Provides
-    @Singleton
-    SharedPreferences provideSharedPreferences(@PreferenceInfo String prefName, Context context) {
-        return context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
+    SharedPreferences provideSharedPreferences(Context context) {
+        return context.getSharedPreferences(AppConstants.PREF_NAME, Context.MODE_PRIVATE);
     }
 
     @Provides

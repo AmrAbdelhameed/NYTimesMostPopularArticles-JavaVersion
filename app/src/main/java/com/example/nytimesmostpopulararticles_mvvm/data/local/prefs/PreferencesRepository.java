@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import javax.inject.Inject;
 
 public class PreferencesRepository implements PreferencesDataSource {
-
     private final SharedPreferences sharedPreferences;
 
     @Inject

@@ -12,7 +12,6 @@ import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseRecyclerViewAdapt
 import java.util.List;
 
 public final class BindingUtils {
-
     private BindingUtils() {
         // This class is not publicly instantiable
     }

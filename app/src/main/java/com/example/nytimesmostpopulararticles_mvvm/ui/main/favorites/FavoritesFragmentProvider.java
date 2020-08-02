@@ -5,7 +5,6 @@ import dagger.android.ContributesAndroidInjector;
 
 @Module
 public abstract class FavoritesFragmentProvider {
-
     @ContributesAndroidInjector(modules = FavoritesFragmentModule.class)
     abstract FavoritesFragment provideFavoritesFragmentFactory();
 }

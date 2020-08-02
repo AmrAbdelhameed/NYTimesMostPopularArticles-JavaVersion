@@ -11,7 +11,7 @@ import com.example.nytimesmostpopulararticles_mvvm.utils.rx.SchedulerProvider;
 
 import java.util.List;
 
-public class FavoritesViewModel extends BaseViewModel<FavoritesNavigator> {
+public class FavoritesViewModel extends BaseViewModel {
     private LiveData<List<Article>> articlesLiveData;
 
     public FavoritesViewModel(Application application, AppDataManager appDataManager, SchedulerProvider schedulerProvider) {
@@ -19,7 +19,7 @@ public class FavoritesViewModel extends BaseViewModel<FavoritesNavigator> {
         articlesLiveData = getAppDataManager().getDbRepository().getArticles();
     }
 
-    public LiveData<List<Article>> getArticlesLiveDataLiveData() {
+    public LiveData<List<Article>> getArticlesLiveData() {
         return articlesLiveData;
     }
 }

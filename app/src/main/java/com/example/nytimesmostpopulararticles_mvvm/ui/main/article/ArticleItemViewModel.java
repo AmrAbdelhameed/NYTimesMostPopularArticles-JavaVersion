@@ -5,7 +5,6 @@ import androidx.databinding.ObservableField;
 import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseItemListener;
 
 public class ArticleItemViewModel {
-
     private final ArticleDataItem articleDataItem;
     private final ArticleItemViewModelListener mListener;
     public final ObservableField<String> imageUrl;

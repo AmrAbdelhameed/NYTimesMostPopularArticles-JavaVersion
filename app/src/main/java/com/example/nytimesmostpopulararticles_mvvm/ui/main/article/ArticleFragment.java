@@ -5,7 +5,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,15 +21,13 @@ import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseFragment;
 import com.example.nytimesmostpopulararticles_mvvm.ui.main.MainActivity;
 import com.example.nytimesmostpopulararticles_mvvm.utils.AppConstants;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ArticleFragment extends BaseFragment<FragmentArticleBinding, ArticleViewModel>
-        implements ArticleNavigator, ArticleAdapter.ArticleAdapterListener {
+        implements ArticleAdapter.ArticleAdapterListener {
     @Inject
     ViewModelProviderFactory factory;
     @Inject
@@ -62,23 +59,16 @@ public class ArticleFragment extends BaseFragment<FragmentArticleBinding, Articl
     public void onItemClick(ArticleDataItem articleDataItem) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(AppConstants.ARTICLE, articleDataItem);
-        getNavController().navigate(R.id.action_articleFragment_to_articleDetailsFragment, bundle);
-    }
-
-    @Override
-    public void handleError(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void setData(List<ArticleDataItem> articleDataItems) {
-        articleAdapter.addItems(articleDataItems);
+        if (getNavController().getCurrentDestination() != null) {
+            if (getNavController().getCurrentDestination().getId() == R.id.articleFragment) {
+                getNavController().navigate(R.id.action_articleFragment_to_articleDetailsFragment, bundle);
+            }
+        }
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        articleViewModel.setNavigator(this);
         articleAdapter.setListener(this);
     }
 

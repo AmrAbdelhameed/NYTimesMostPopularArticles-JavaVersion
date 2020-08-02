@@ -2,7 +2,6 @@ package com.example.nytimesmostpopulararticles_mvvm.ui.main.favorites;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,20 +21,17 @@ import com.example.nytimesmostpopulararticles_mvvm.ui.main.MainActivity;
 import com.example.nytimesmostpopulararticles_mvvm.ui.main.article.ArticleDataItem;
 import com.example.nytimesmostpopulararticles_mvvm.utils.AppConstants;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class FavoritesFragment extends BaseFragment<FragmentFavoritesBinding, FavoritesViewModel>
-        implements FavoritesNavigator, FavoritesAdapter.FavoritesAdapterListener {
+        implements FavoritesAdapter.FavoritesAdapterListener {
     @Inject
     ViewModelProviderFactory factory;
     @Inject
     FavoritesAdapter favoritesAdapter;
-    private FavoritesViewModel favoritesViewModel;
 
     @Override
     public int getBindingVariable() {
@@ -49,8 +45,7 @@ public class FavoritesFragment extends BaseFragment<FragmentFavoritesBinding, Fa
 
     @Override
     public FavoritesViewModel getViewModel() {
-        favoritesViewModel = new ViewModelProvider(this, factory).get(FavoritesViewModel.class);
-        return favoritesViewModel;
+        return new ViewModelProvider(this, factory).get(FavoritesViewModel.class);
     }
 
     @Override
@@ -64,23 +59,16 @@ public class FavoritesFragment extends BaseFragment<FragmentFavoritesBinding, Fa
                 , article.getPublishedDate()
                 , article.getUrl()
                 , article.getCoverImageUrl()));
-        getNavController().navigate(R.id.action_favoritesFragment_to_articleDetailsFragment, bundle);
-    }
-
-    @Override
-    public void handleError(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void setData(List<Article> articles) {
-        favoritesAdapter.addItems(articles);
+        if (getNavController().getCurrentDestination() != null) {
+            if (getNavController().getCurrentDestination().getId() == R.id.favoritesFragment) {
+                getNavController().navigate(R.id.action_favoritesFragment_to_articleDetailsFragment, bundle);
+            }
+        }
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        favoritesViewModel.setNavigator(this);
         favoritesAdapter.setListener(this);
     }
 

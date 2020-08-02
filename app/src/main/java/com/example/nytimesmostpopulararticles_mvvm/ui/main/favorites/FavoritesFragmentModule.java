@@ -7,7 +7,6 @@ import dagger.Provides;
 
 @Module
 public class FavoritesFragmentModule {
-
     @Provides
     FavoritesAdapter provideFavoritesAdapter() {
         return new FavoritesAdapter(new ArrayList<>());

@@ -11,7 +11,6 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasAndroidInjector;
 
 public class CustomApplication extends Application implements HasAndroidInjector {
-
     @Inject
     DispatchingAndroidInjector<Object> dispatchingAndroidInjector;
 

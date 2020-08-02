@@ -8,12 +8,9 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
-public class AppDataManager implements DataManager {
-
+public class AppDataManager {
     private final ApiRepository apiRepository;
-
     private final DbRepository dbRepository;
-
     private final PreferencesRepository preferencesRepository;
 
     @Inject

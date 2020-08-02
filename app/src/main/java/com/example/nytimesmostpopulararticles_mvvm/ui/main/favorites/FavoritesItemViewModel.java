@@ -6,7 +6,6 @@ import com.example.nytimesmostpopulararticles_mvvm.data.model.db.Article;
 import com.example.nytimesmostpopulararticles_mvvm.ui.base.BaseItemListener;
 
 public class FavoritesItemViewModel {
-
     private final Article article;
     private final FavoritesItemViewModelListener mListener;
     public final ObservableField<String> imageUrl;

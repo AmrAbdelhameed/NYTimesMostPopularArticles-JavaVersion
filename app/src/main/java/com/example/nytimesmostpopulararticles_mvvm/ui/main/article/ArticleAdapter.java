@@ -18,7 +18,6 @@ import static com.example.nytimesmostpopulararticles_mvvm.utils.AppConstants.VIE
 import static com.example.nytimesmostpopulararticles_mvvm.utils.AppConstants.VIEW_TYPE_NORMAL;
 
 public class ArticleAdapter extends BaseRecyclerViewAdapter<ArticleDataItem> {
-
     private ArticleAdapterListener mListener;
 
     public ArticleAdapter(List<ArticleDataItem> articleDataItems) {
@@ -51,12 +50,7 @@ public class ArticleAdapter extends BaseRecyclerViewAdapter<ArticleDataItem> {
         }
     }
 
-    public interface ArticleAdapterListener extends BaseItemListener<ArticleDataItem>, BaseEmptyItemListener {
-
-    }
-
     public class ArticleViewHolder extends BaseViewHolder implements ArticleItemViewModel.ArticleItemViewModelListener {
-
         private ItemArticleViewBinding mBinding;
 
         ArticleViewHolder(ItemArticleViewBinding binding) {
@@ -66,8 +60,7 @@ public class ArticleAdapter extends BaseRecyclerViewAdapter<ArticleDataItem> {
 
         @Override
         public void onBind(int position) {
-            final ArticleDataItem articleDataItem = getItems().get(position);
-            mBinding.setViewModel(new ArticleItemViewModel(articleDataItem, this));
+            mBinding.setViewModel(new ArticleItemViewModel(getItems().get(position), this));
             mBinding.executePendingBindings();
         }
 
@@ -80,7 +73,6 @@ public class ArticleAdapter extends BaseRecyclerViewAdapter<ArticleDataItem> {
     }
 
     public class EmptyViewHolder extends BaseViewHolder implements BaseEmptyItemListener {
-
         private ItemArticleEmptyViewBinding mBinding;
 
         EmptyViewHolder(ItemArticleEmptyViewBinding binding) {
@@ -98,5 +90,9 @@ public class ArticleAdapter extends BaseRecyclerViewAdapter<ArticleDataItem> {
         public void onRetryClick() {
             mListener.onRetryClick();
         }
+    }
+
+    public interface ArticleAdapterListener extends BaseItemListener<ArticleDataItem>, BaseEmptyItemListener {
+
     }
 }

@@ -16,7 +16,6 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasAndroidInjector;
 
 public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseViewModel> extends AppCompatActivity implements HasAndroidInjector {
-
     @Inject
     DispatchingAndroidInjector<Object> dispatchingAndroidInjector;
 
